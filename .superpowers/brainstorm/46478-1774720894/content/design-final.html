@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВИШНЯ — Финальный дизайн</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f1f5f9; padding: 20px; color: #1e293b; }
+  h1 { font-size: 22px; font-weight: 800; color: #7c3aed; margin-bottom: 4px; }
+  .subtitle { color: #64748b; font-size: 13px; margin-bottom: 28px; }
+
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 14px; }
+
+  /* Screens */
+  .screens { display: flex; gap: 16px; flex-wrap: wrap; }
+  .phone-wrap { text-align: center; }
+  .phone { border: 2px solid #d1d5db; border-radius: 24px; overflow: hidden; width: 195px; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.13); }
+  .phone-label { font-size: 11px; color: #6b7280; font-weight: 600; margin-top: 8px; }
+
+  .app-header { background: linear-gradient(135deg, #6d28d9, #a855f7); color: white; padding: 12px 14px 0; }
+  .app-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .app-title { font-size: 16px; font-weight: 800; }
+  .year-badge { background: rgba(255,255,255,0.2); border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 700; }
+  .app-tabs { display: flex; }
+  .tab { flex: 1; text-align: center; padding: 7px 2px; font-size: 10px; font-weight: 600; opacity: 0.55; border-bottom: 2px solid transparent; }
+  .tab.active { opacity: 1; border-bottom: 2px solid white; }
+
+  .app-body { background: #f8fafc; padding: 10px; min-height: 310px; }
+
+  .month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .month-name { font-size: 13px; font-weight: 700; }
+  .nav-arrow { font-size: 18px; color: #7c3aed; line-height: 1; }
+
+  .stat-row { display: flex; gap: 6px; margin-bottom: 10px; }
+  .stat { flex: 1; background: white; border-radius: 10px; padding: 8px 6px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .stat-val { font-size: 13px; font-weight: 800; }
+  .stat-lbl { font-size: 8px; color: #9ca3af; margin-top: 1px; }
+
+  .entry { background: white; border-radius: 8px; padding: 7px 9px; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .entry-left { flex: 1; min-width: 0; }
+  .entry-name { font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .entry-meta { font-size: 8px; color: #9ca3af; margin-top: 1px; }
+  .amount { font-size: 12px; font-weight: 800; white-space: nowrap; margin-left: 6px; }
+  .neg { color: #ef4444; } .pos { color: #22c55e; } .gift { color: #a855f7; }
+
+  .add-fab { background: #6d28d9; color: white; border-radius: 10px; padding: 9px; text-align: center; font-size: 11px; font-weight: 700; margin-top: 8px; }
+
+  /* Chart screen */
+  .chart-wrap { background: white; border-radius: 10px; padding: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); margin-bottom: 8px; }
+  .chart-title { font-size: 9px; color: #6b7280; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+  .bars { display: flex; align-items: flex-end; gap: 2px; height: 55px; }
+  .b { flex: 1; border-radius: 3px 3px 0 0; }
+  .bar-labels { display: flex; gap: 2px; margin-top: 3px; }
+  .bl { flex: 1; text-align: center; font-size: 6.5px; color: #9ca3af; }
+
+  .profit-card { background: linear-gradient(135deg, #6d28d9, #a855f7); border-radius: 10px; padding: 10px; color: white; margin-bottom: 8px; }
+  .profit-label { font-size: 9px; opacity: 0.8; }
+  .profit-val { font-size: 22px; font-weight: 900; margin-top: 2px; }
+  .profit-sub { font-size: 8px; opacity: 0.7; margin-top: 2px; }
+
+  /* Form screen */
+  .form-header { background: linear-gradient(135deg, #6d28d9, #a855f7); color: white; padding: 12px 12px; display: flex; align-items: center; gap: 8px; }
+  .form-title { font-size: 14px; font-weight: 700; flex: 1; }
+  .save-chip { background: white; color: #6d28d9; border-radius: 20px; padding: 3px 10px; font-size: 10px; font-weight: 800; }
+  .form-body { padding: 10px; }
+  .field { margin-bottom: 9px; }
+  .field label { font-size: 8px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 3px; }
+  .field input, .field select { width: 100%; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 6px 8px; font-size: 11px; }
+  .autocomplete-hint { font-size: 8px; color: #a855f7; margin-top: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
+  .chip { background: #f3e8ff; color: #7c3aed; border-radius: 20px; padding: 2px 7px; font-size: 8px; font-weight: 600; }
+
+  /* Columns table */
+  .cols-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .col-section { background: white; border-radius: 12px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .col-title { font-size: 12px; font-weight: 800; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid; }
+  .col-title.expense { color: #ef4444; border-color: #fecaca; }
+  .col-title.income { color: #22c55e; border-color: #bbf7d0; }
+  .col-title.gift { color: #a855f7; border-color: #e9d5ff; }
+  .col-field { font-size: 11px; color: #374151; padding: 4px 0; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; gap: 6px; }
+  .col-field:last-child { border-bottom: none; }
+  .auto-badge { font-size: 8px; background: #f3e8ff; color: #7c3aed; border-radius: 4px; padding: 1px 4px; flex-shrink: 0; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .feature { background: white; border-radius: 12px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .feature-icon { font-size: 22px; margin-bottom: 6px; }
+  .feature-title { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .feature-desc { font-size: 11px; color: #6b7280; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<h1>🍒 ВИШНЯ</h1>
+<p class="subtitle">Финальный дизайн · React + Google Sheets API · Mobile PWA</p>
+
+<!-- SCREENS -->
+<div class="section">
+  <div class="section-title">Экраны приложения</div>
+  <div class="screens">
+
+    <!-- List screen -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="app-header">
+          <div class="app-top">
+            <div class="app-title">🍒 ВИШНЯ</div>
+            <div class="year-badge">2025</div>
+          </div>
+          <div class="app-tabs">
+            <div class="tab active">Расходы</div>
+            <div class="tab">Доходы</div>
+            <div class="tab">Подарки</div>
+          </div>
+        </div>
+        <div class="app-body">
+          <div class="month-nav">
+            <span class="nav-arrow">‹</span>
+            <span class="month-name">Январь</span>
+            <span class="nav-arrow">›</span>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><div class="stat-val neg">−19 629₽</div><div class="stat-lbl">Расходы</div></div>
+            <div class="stat"><div class="stat-val" style="color:#6d28d9">65₽</div><div class="stat-lbl">Кэшбэк</div></div>
+          </div>
+          <div class="entry">
+            <div class="entry-left">
+              <div class="entry-name">Доставка фурнитуры</div>
+              <div class="entry-meta">Онлайн · СДЭК · Финансы</div>
+            </div>
+            <div class="amount neg">−420₽</div>
+          </div>
+          <div class="entry">
+            <div class="entry-left">
+              <div class="entry-name">Фурнитура</div>
+              <div class="entry-meta">Онлайн · M · Мос, ТТ канал</div>
+            </div>
+            <div class="amount neg">−635₽</div>
+          </div>
+          <div class="entry">
+            <div class="entry-left">
+              <div class="entry-name">Фурнитура Evo</div>
+              <div class="entry-meta">Магазин · M · СПБ, Одежда</div>
+            </div>
+            <div class="amount neg">−4574₽</div>
+          </div>
+          <div class="add-fab">+ Добавить расход</div>
+        </div>
+      </div>
+      <div class="phone-label">1. Список + фильтр</div>
+    </div>
+
+    <!-- Stats screen -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="app-header">
+          <div class="app-top">
+            <div class="app-title">🍒 ВИШНЯ</div>
+            <div class="year-badge">2025</div>
+          </div>
+          <div class="app-tabs">
+            <div class="tab">Расходы</div>
+            <div class="tab active">Доходы</div>
+            <div class="tab">Подарки</div>
+          </div>
+        </div>
+        <div class="app-body">
+          <div class="month-nav">
+            <span class="nav-arrow"></span>
+            <span class="month-name">Весь 2025 год</span>
+            <span class="nav-arrow"></span>
+          </div>
+          <div class="profit-card">
+            <div class="profit-label">Чистая прибыль</div>
+            <div class="profit-val">+ 16 750₽</div>
+            <div class="profit-sub">Доход 38 200₽ · Расход 21 450₽</div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-title">Доходы по месяцам</div>
+            <div class="bars">
+              <div class="b" style="height:40px;background:#22c55e"></div>
+              <div class="b" style="height:28px;background:#22c55e"></div>
+              <div class="b" style="height:52px;background:#22c55e"></div>
+              <div class="b" style="height:18px;background:#22c55e"></div>
+              <div class="b" style="height:8px;background:#e2e8f0"></div>
+              <div class="b" style="height:38px;background:#22c55e"></div>
+              <div class="b" style="height:32px;background:#22c55e"></div>
+              <div class="b" style="height:8px;background:#e2e8f0"></div>
+              <div class="b" style="height:8px;background:#e2e8f0"></div>
+              <div class="b" style="height:8px;background:#e2e8f0"></div>
+              <div class="b" style="height:8px;background:#e2e8f0"></div>
+              <div class="b" style="height:8px;background:#e2e8f0"></div>
+            </div>
+            <div class="bar-labels">
+              <div class="bl">Я</div><div class="bl">Ф</div><div class="bl">М</div>
+              <div class="bl">А</div><div class="bl">М</div><div class="bl">И</div>
+              <div class="bl">И</div><div class="bl">А</div><div class="bl">С</div>
+              <div class="bl">О</div><div class="bl">Н</div><div class="bl">Д</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><div class="stat-val" style="color:#a855f7">3</div><div class="stat-lbl">Подарки</div></div>
+            <div class="stat"><div class="stat-val" style="color:#6d28d9">156₽</div><div class="stat-lbl">Кэшбэк</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">2. Статистика</div>
+    </div>
+
+    <!-- Form screen -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="form-header">
+          <span style="font-size:18px">←</span>
+          <span class="form-title">Новый расход</span>
+          <span class="save-chip">Сохранить</span>
+        </div>
+        <div class="form-body">
+          <div class="field">
+            <label>Сумма (₽)</label>
+            <input placeholder="0" type="number">
+          </div>
+          <div class="field">
+            <label>КАК</label>
+            <div class="chips">
+              <div class="chip">Онлайн</div>
+              <div class="chip">Магазин</div>
+              <div class="chip">ОПТ</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Категория (М/Б/О/Д)</label>
+            <div class="chips">
+              <div class="chip">М — материалы</div>
+              <div class="chip">Б — бизнес</div>
+              <div class="chip">О — одежда</div>
+              <div class="chip">Д — доставка</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>ЧТО (описание)</label>
+            <input placeholder="Начни вводить...">
+            <div class="autocomplete-hint">✦ Подсказки из предыдущих записей</div>
+          </div>
+          <div class="field">
+            <label>ГДЕ (магазин)</label>
+            <input placeholder="AliExpress, WB...">
+            <div class="autocomplete-hint">✦ Подсказки из предыдущих записей</div>
+          </div>
+          <div class="field">
+            <label>Оплата</label>
+            <div class="chips">
+              <div class="chip">Карта ТБанк</div>
+              <div class="chip">СБП</div>
+              <div class="chip">Наличные</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">3. Умная форма</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- COLUMNS -->
+<div class="section">
+  <div class="section-title">Поля форм (точно по таблице)</div>
+  <div class="cols-grid">
+    <div class="col-section">
+      <div class="col-title expense">📉 Расходы</div>
+      <div class="col-field">СУММА</div>
+      <div class="col-field">КАК <span class="auto-badge">чипы</span></div>
+      <div class="col-field">Категория <span class="auto-badge">чипы</span></div>
+      <div class="col-field">ЧТО <span class="auto-badge">автодополн.</span></div>
+      <div class="col-field">ГДЕ <span class="auto-badge">автодополн.</span></div>
+      <div class="col-field">Оплата <span class="auto-badge">чипы</span></div>
+      <div class="col-field">Категория е <span class="auto-badge">чипы</span></div>
+      <div class="col-field">Кэшбэк</div>
+      <div class="col-field">Скидки</div>
+    </div>
+    <div class="col-section">
+      <div class="col-title income">📈 Доходы</div>
+      <div class="col-field">СУММА</div>
+      <div class="col-field">ЧТО <span class="auto-badge">автодополн.</span></div>
+      <div class="col-field">КОМУ <span class="auto-badge">автодополн.</span></div>
+      <div class="col-field">Предоплата е</div>
+      <div class="col-field">Доставка</div>
+      <div class="col-field">ГДЕ заказали <span class="auto-badge">чипы</span></div>
+      <div class="col-field">Откуда пришли <span class="auto-badge">автодополн.</span></div>
+      <div class="col-field">Отзыв <span class="auto-badge">чипы</span></div>
+      <div class="col-field">Скидки</div>
+    </div>
+    <div class="col-section">
+      <div class="col-title gift">🎁 Подарки</div>
+      <div class="col-field">СУММА</div>
+      <div class="col-field">ЧТО <span class="auto-badge">автодополн.</span></div>
+      <div class="col-field">КОМУ <span class="auto-badge">автодополн.</span></div>
+      <div class="col-field">Отзыв е <span class="auto-badge">чипы</span></div>
+      <div class="col-field">Доставка е</div>
+      <div class="col-field">Повод <span class="auto-badge">автодополн.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY FEATURES -->
+<div class="section">
+  <div class="section-title">Ключевые функции</div>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🗓️</div>
+      <div class="feature-title">Переход между годами</div>
+      <div class="feature-desc">Приложение автоматически определяет текущий год. При переходе на новый год создаётся новый лист (напр. "1. Общая 2026"). Переключатель года виден в шапке.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">✨</div>
+      <div class="feature-title">Умное автодополнение</div>
+      <div class="feature-desc">Текстовые поля (ЧТО, ГДЕ, КОМУ) предлагают значения из предыдущих записей. Фиксированные значения (КАК, Оплата) — чипы для быстрого выбора.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔄</div>
+      <div class="feature-title">Синхронизация с Google Sheets</div>
+      <div class="feature-desc">Каждая новая запись добавляется в нужный месяц-блок таблицы. Чтение данных при загрузке страницы. Кэш в localStorage.</div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Статистика</div>
+      <div class="feature-desc">Графики доходов/расходов по месяцам (Chart.js). Сводка по каждому разделу. Фильтр по месяцу или весь год.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

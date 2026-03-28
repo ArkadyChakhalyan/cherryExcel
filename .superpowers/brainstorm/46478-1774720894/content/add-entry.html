@@ -1,0 +1,79 @@
+<h2>Как добавлять новую запись?</h2>
+<p class="subtitle">Выбери как открывается форма ввода</p>
+
+<div class="cards">
+  <div class="card" data-choice="fab-modal" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f8f4ff;padding:16px;border-radius:8px;">
+      <div style="border:2px solid #ccc;border-radius:12px;overflow:hidden;max-width:180px;margin:0 auto;font-size:11px;position:relative;">
+        <div style="background:#7c3aed;color:white;display:flex;justify-content:space-around;padding:7px;font-size:10px;">
+          <span style="border-bottom:2px solid white">Расходы</span><span style="opacity:0.6">Доходы</span><span style="opacity:0.6">Подарки</span>
+        </div>
+        <div style="background:#fff;padding:8px;">
+          <div style="background:#f3f4f6;border-radius:6px;padding:5px;margin-bottom:4px;font-size:10px;">Бусины AliExpress — 850₽</div>
+          <div style="background:#f3f4f6;border-radius:6px;padding:5px;margin-bottom:4px;font-size:10px;">Фурнитура — 320₽</div>
+          <div style="background:#f3f4f6;border-radius:6px;padding:5px;font-size:10px;">Упаковка — 150₽</div>
+        </div>
+        <div style="background:rgba(0,0,0,0.4);position:absolute;top:0;left:0;right:0;bottom:0;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <div style="background:white;border-radius:10px;padding:10px;width:80%;font-size:10px;">
+            <div style="font-weight:bold;margin-bottom:6px;">+ Новый расход</div>
+            <input style="width:100%;border:1px solid #ddd;border-radius:4px;padding:3px;font-size:9px;margin-bottom:3px;box-sizing:border-box" placeholder="Сумма">
+            <input style="width:100%;border:1px solid #ddd;border-radius:4px;padding:3px;font-size:9px;box-sizing:border-box" placeholder="Описание">
+          </div>
+        </div>
+        <div style="position:absolute;bottom:12px;right:12px;background:#7c3aed;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:bold;">+</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Кнопка + и модальное окно</h3>
+      <p>Круглая кнопка в углу. Нажимаешь — появляется форма поверх списка.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="bottom-sheet" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0f9ff;padding:16px;border-radius:8px;">
+      <div style="border:2px solid #ccc;border-radius:12px;overflow:hidden;max-width:180px;margin:0 auto;font-size:11px;position:relative;">
+        <div style="background:#0284c7;color:white;display:flex;justify-content:space-around;padding:7px;font-size:10px;">
+          <span style="border-bottom:2px solid white">Расходы</span><span style="opacity:0.6">Доходы</span><span style="opacity:0.6">Подарки</span>
+        </div>
+        <div style="background:#fff;padding:8px;">
+          <div style="background:#f3f4f6;border-radius:6px;padding:5px;margin-bottom:4px;font-size:10px;">Бусины AliExpress — 850₽</div>
+          <div style="background:#f3f4f6;border-radius:6px;padding:5px;margin-bottom:4px;font-size:10px;">Фурнитура — 320₽</div>
+        </div>
+        <div style="background:white;border-top:2px solid #e5e7eb;padding:8px;font-size:10px;">
+          <div style="font-weight:bold;margin-bottom:5px;color:#0284c7;">+ Добавить расход</div>
+          <div style="display:flex;gap:4px;margin-bottom:3px;">
+            <input style="flex:1;border:1px solid #ddd;border-radius:4px;padding:3px;font-size:9px;" placeholder="Сумма">
+            <input style="flex:2;border:1px solid #ddd;border-radius:4px;padding:3px;font-size:9px;" placeholder="Описание">
+          </div>
+          <div style="background:#0284c7;color:white;border-radius:4px;padding:4px;text-align:center;font-size:9px;">Сохранить</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Форма внизу экрана</h3>
+      <p>Форма постоянно видна снизу. Список сверху, ввод снизу — не нужно никуда тапать.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="full-screen" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fff7ed;padding:16px;border-radius:8px;">
+      <div style="border:2px solid #ccc;border-radius:12px;overflow:hidden;max-width:180px;margin:0 auto;font-size:11px;">
+        <div style="background:#ea580c;color:white;display:flex;justify-content:space-between;align-items:center;padding:7px 10px;font-size:10px;">
+          <span>← Назад</span><span style="font-weight:bold">Новый расход</span><span>✓</span>
+        </div>
+        <div style="background:#fff;padding:10px;">
+          <div style="font-size:9px;color:#888;margin-bottom:2px;">Сумма</div>
+          <input style="width:100%;border:1px solid #ddd;border-radius:4px;padding:4px;font-size:10px;margin-bottom:6px;box-sizing:border-box" placeholder="0 ₽">
+          <div style="font-size:9px;color:#888;margin-bottom:2px;">Категория</div>
+          <select style="width:100%;border:1px solid #ddd;border-radius:4px;padding:4px;font-size:9px;margin-bottom:6px;box-sizing:border-box"><option>Материалы</option></select>
+          <div style="font-size:9px;color:#888;margin-bottom:2px;">Описание</div>
+          <input style="width:100%;border:1px solid #ddd;border-radius:4px;padding:4px;font-size:9px;box-sizing:border-box" placeholder="Что купила?">
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Отдельный полноэкранный экран</h3>
+      <p>Нажимаешь "добавить" — переходишь на отдельную страницу с полной формой. Удобно для большого количества полей.</p>
+    </div>
+  </div>
+</div>
