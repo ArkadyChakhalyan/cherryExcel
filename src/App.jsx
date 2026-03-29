@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth.js'
 import { AppProvider } from './context/AppContext.jsx'
 import LoginPage from './pages/LoginPage.jsx'
@@ -11,7 +11,7 @@ export default function App() {
   if (!isLoggedIn) return <LoginPage onLogin={saveToken} />
   return (
     <AppProvider token={token} logout={logout}>
-      <BrowserRouter basename="/cherryExcel">
+      <HashRouter>
         <Routes>
           <Route path="/" element={<ListPage />} />
           <Route path="/add/:type" element={<FormPage mode="add" />} />
@@ -19,7 +19,7 @@ export default function App() {
           <Route path="/stats" element={<StatsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </AppProvider>
   )
 }
