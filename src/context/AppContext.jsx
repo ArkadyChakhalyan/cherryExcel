@@ -70,7 +70,7 @@ export function AppProvider({ token, logout, children }) {
     }
   }, [sheets, showToast])
 
-  useEffect(() => { loadData(sheetName) }, [sheetName])
+  useEffect(() => { loadData(sheetName) }, [sheetName, loadData])
 
   const setYear = useCallback(async (year) => {
     const name = `1. Общая ${year}`
@@ -138,13 +138,16 @@ export function AppProvider({ token, logout, children }) {
 
   const suggestions = useAutocomplete(state.entries)
 
+  const setTab = useCallback((tab) => dispatch({ type: 'SET_TAB', tab }), [])
+  const setMonth = useCallback((month) => dispatch({ type: 'SET_MONTH', month }), [])
+
   return (
     <AppContext.Provider value={{
       ...state,
       sheetName,
       setYear,
-      setTab: (tab) => dispatch({ type: 'SET_TAB', tab }),
-      setMonth: (month) => dispatch({ type: 'SET_MONTH', month }),
+      setTab,
+      setMonth,
       saveEntry,
       editEntry,
       refresh,
