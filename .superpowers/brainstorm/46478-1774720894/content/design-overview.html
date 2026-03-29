@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВИШНЯ — дизайн приложения</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f1f5f9; padding: 24px; color: #1e293b; }
+  h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; color: #7c3aed; }
+  .subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+  .section { margin-bottom: 32px; }
+  .section h2 { font-size: 15px; font-weight: 700; color: #374151; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .screens { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .phone { border: 2px solid #d1d5db; border-radius: 24px; overflow: hidden; width: 200px; background: white; box-shadow: 0 4px 16px rgba(0,0,0,0.12); flex-shrink: 0; }
+  .phone-label { text-align: center; font-size: 12px; color: #6b7280; margin-top: 10px; font-weight: 600; }
+
+  /* App UI */
+  .app-header { background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; padding: 12px 14px 0; }
+  .app-title { font-size: 16px; font-weight: 800; letter-spacing: 0.02em; }
+  .app-tabs { display: flex; margin-top: 8px; }
+  .tab { flex: 1; text-align: center; padding: 7px 4px; font-size: 11px; font-weight: 600; opacity: 0.6; border-bottom: 2px solid transparent; cursor: pointer; }
+  .tab.active { opacity: 1; border-bottom: 2px solid white; }
+
+  .app-body { padding: 10px; background: #fafafa; min-height: 300px; }
+  .month-selector { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .month-label { font-size: 13px; font-weight: 700; color: #374151; }
+  .month-arrow { color: #7c3aed; font-size: 16px; cursor: pointer; padding: 0 4px; }
+
+  .stat-row { display: flex; gap: 6px; margin-bottom: 10px; }
+  .stat-card { flex: 1; background: white; border-radius: 10px; padding: 8px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .stat-value { font-size: 14px; font-weight: 800; color: #7c3aed; }
+  .stat-label { font-size: 9px; color: #9ca3af; margin-top: 2px; }
+
+  .entry { background: white; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .entry-name { font-size: 11px; font-weight: 600; color: #374151; }
+  .entry-meta { font-size: 9px; color: #9ca3af; margin-top: 2px; }
+  .entry-amount { font-size: 13px; font-weight: 800; }
+  .entry-amount.expense { color: #ef4444; }
+  .entry-amount.income { color: #22c55e; }
+  .entry-amount.gift { color: #a855f7; }
+
+  .add-btn { display: flex; align-items: center; justify-content: center; gap: 6px; background: #7c3aed; color: white; border-radius: 10px; padding: 10px; margin-top: 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+  /* Chart mockup */
+  .chart-bar-row { display: flex; align-items: flex-end; gap: 3px; height: 60px; margin: 8px 0; }
+  .bar { flex: 1; border-radius: 3px 3px 0 0; background: #7c3aed; opacity: 0.8; }
+  .chart-labels { display: flex; gap: 3px; }
+  .chart-label { flex: 1; text-align: center; font-size: 7px; color: #9ca3af; }
+
+  /* Form screen */
+  .form-header { background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; padding: 12px 14px; display: flex; align-items: center; gap: 8px; }
+  .back-btn { font-size: 18px; cursor: pointer; }
+  .form-title { font-size: 15px; font-weight: 700; }
+  .save-btn { margin-left: auto; background: white; color: #7c3aed; border-radius: 6px; padding: 4px 8px; font-size: 11px; font-weight: 700; }
+  .form-body { padding: 12px; }
+  .field { margin-bottom: 10px; }
+  .field label { font-size: 10px; color: #6b7280; font-weight: 600; display: block; margin-bottom: 3px; }
+  .field input, .field select { width: 100%; border: 1.5px solid #e5e7eb; border-radius: 8px; padding: 7px 8px; font-size: 12px; color: #374151; background: white; }
+  .field input:focus, .field select:focus { border-color: #7c3aed; outline: none; }
+</style>
+</head>
+<body>
+
+<h1>🍒 ВИШНЯ — Дизайн приложения</h1>
+<p class="subtitle">React + Vite · Google Sheets синхронизация · Мобильное PWA</p>
+
+<div class="section">
+  <h2>Экраны приложения</h2>
+  <div class="screens">
+
+    <!-- Screen 1: Main list -->
+    <div>
+      <div class="phone">
+        <div class="app-header">
+          <div class="app-title">🍒 ВИШНЯ</div>
+          <div class="app-tabs">
+            <div class="tab active">Расходы</div>
+            <div class="tab">Доходы</div>
+            <div class="tab">Подарки</div>
+          </div>
+        </div>
+        <div class="app-body">
+          <div class="month-selector">
+            <span class="month-arrow">‹</span>
+            <span class="month-label">Январь 2025</span>
+            <span class="month-arrow">›</span>
+          </div>
+          <div class="stat-row">
+            <div class="stat-card">
+              <div class="stat-value">12 450₽</div>
+              <div class="stat-label">Всего</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">23</div>
+              <div class="stat-label">Записей</div>
+            </div>
+          </div>
+          <div class="entry">
+            <div>
+              <div class="entry-name">Бусины AliExpress</div>
+              <div class="entry-meta">15 янв · Материалы</div>
+            </div>
+            <div class="entry-amount expense">−850₽</div>
+          </div>
+          <div class="entry">
+            <div>
+              <div class="entry-name">Фурнитура WB</div>
+              <div class="entry-meta">12 янв · Фурнитура</div>
+            </div>
+            <div class="entry-amount expense">−320₽</div>
+          </div>
+          <div class="entry">
+            <div>
+              <div class="entry-name">Упаковка</div>
+              <div class="entry-meta">8 янв · Упаковка</div>
+            </div>
+            <div class="entry-amount expense">−150₽</div>
+          </div>
+          <div class="add-btn">+ Добавить расход</div>
+        </div>
+      </div>
+      <div class="phone-label">1. Список записей</div>
+    </div>
+
+    <!-- Screen 2: Stats -->
+    <div>
+      <div class="phone">
+        <div class="app-header">
+          <div class="app-title">🍒 ВИШНЯ</div>
+          <div class="app-tabs">
+            <div class="tab">Расходы</div>
+            <div class="tab active">Доходы</div>
+            <div class="tab">Подарки</div>
+          </div>
+        </div>
+        <div class="app-body">
+          <div class="month-selector">
+            <span class="month-arrow">‹</span>
+            <span class="month-label">2025 — весь год</span>
+            <span class="month-arrow">›</span>
+          </div>
+          <div style="background:white;border-radius:10px;padding:10px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+            <div style="font-size:10px;color:#6b7280;font-weight:600;margin-bottom:6px;">По месяцам (доходы)</div>
+            <div class="chart-bar-row">
+              <div class="bar" style="height:45px;background:#22c55e"></div>
+              <div class="bar" style="height:30px;background:#22c55e"></div>
+              <div class="bar" style="height:55px;background:#22c55e"></div>
+              <div class="bar" style="height:20px;background:#22c55e"></div>
+              <div class="bar" style="height:10px;background:#e5e7eb"></div>
+              <div class="bar" style="height:40px;background:#22c55e"></div>
+              <div class="bar" style="height:35px;background:#22c55e"></div>
+              <div class="bar" style="height:10px;background:#e5e7eb"></div>
+              <div class="bar" style="height:10px;background:#e5e7eb"></div>
+              <div class="bar" style="height:10px;background:#e5e7eb"></div>
+            </div>
+            <div class="chart-labels">
+              <div class="chart-label">Я</div><div class="chart-label">Ф</div>
+              <div class="chart-label">М</div><div class="chart-label">А</div>
+              <div class="chart-label">М</div><div class="chart-label">И</div>
+              <div class="chart-label">И</div><div class="chart-label">А</div>
+              <div class="chart-label">С</div><div class="chart-label">О</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-card">
+              <div class="stat-value" style="color:#22c55e">38 200₽</div>
+              <div class="stat-label">Всего доход</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" style="color:#ef4444">21 450₽</div>
+              <div class="stat-label">Всего расход</div>
+            </div>
+          </div>
+          <div class="stat-card" style="padding:10px;background:white;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+            <div style="font-size:10px;color:#6b7280;font-weight:600;margin-bottom:4px;">Чистая прибыль</div>
+            <div style="font-size:20px;font-weight:900;color:#7c3aed">+ 16 750₽</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">2. Статистика</div>
+    </div>
+
+    <!-- Screen 3: Add form -->
+    <div>
+      <div class="phone">
+        <div class="form-header">
+          <span class="back-btn">←</span>
+          <span class="form-title">Новый расход</span>
+          <span class="save-btn">Сохранить</span>
+        </div>
+        <div class="form-body">
+          <div class="field">
+            <label>СУММА (₽)</label>
+            <input placeholder="0" type="number">
+          </div>
+          <div class="field">
+            <label>КАТЕГОРИЯ</label>
+            <select><option>Материалы</option><option>Фурнитура</option><option>Упаковка</option><option>Доставка</option></select>
+          </div>
+          <div class="field">
+            <label>ОПИСАНИЕ</label>
+            <input placeholder="Что купила?">
+          </div>
+          <div class="field">
+            <label>МАГАЗИН / МЕСТО</label>
+            <input placeholder="AliExpress, WB...">
+          </div>
+          <div class="field">
+            <label>СПОСОБ ОПЛАТЫ</label>
+            <select><option>Карта</option><option>Наличные</option><option>СБП</option></select>
+          </div>
+          <div class="field">
+            <label>ДАТА</label>
+            <input type="date">
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">3. Форма добавления</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section" style="background:white;border-radius:16px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+  <h2 style="margin-bottom:12px;">Архитектура</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
+    <div>
+      <div style="font-weight:700;color:#7c3aed;margin-bottom:6px;">Frontend</div>
+      <ul style="color:#374151;line-height:1.8;list-style:none;">
+        <li>⚛️ React 18 + Vite</li>
+        <li>📱 Tailwind CSS (mobile-first)</li>
+        <li>📊 Chart.js (графики)</li>
+        <li>🔐 Google OAuth 2.0</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-weight:700;color:#7c3aed;margin-bottom:6px;">Данные</div>
+      <ul style="color:#374151;line-height:1.8;list-style:none;">
+        <li>📋 Google Sheets API v4</li>
+        <li>💾 Кеш в localStorage</li>
+        <li>🌐 Хостинг: GitHub Pages</li>
+        <li>🔄 Автосинхронизация</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

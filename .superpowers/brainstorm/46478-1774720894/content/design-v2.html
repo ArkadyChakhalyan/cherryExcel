@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ВИШНЯ — Дизайн v2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f1f5f9; padding: 20px; color: #1e293b; }
+  h1 { font-size: 22px; font-weight: 800; color: #7c3aed; margin-bottom: 4px; }
+  .subtitle { color: #64748b; font-size: 13px; margin-bottom: 24px; }
+  .section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 12px; }
+  .section { margin-bottom: 28px; }
+
+  /* Phone mockup */
+  .screens { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .phone-wrap { text-align: center; }
+  .phone { border: 2.5px solid #cbd5e1; border-radius: 24px; overflow: hidden; width: 200px; background: white; box-shadow: 0 6px 24px rgba(0,0,0,0.13); }
+  .phone-label { font-size: 11px; color: #6b7280; font-weight: 600; margin-top: 8px; }
+
+  .app-header { background: linear-gradient(135deg, #5b21b6, #7c3aed); color: white; padding: 12px 14px 0; }
+  .app-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .app-title { font-size: 16px; font-weight: 800; }
+  .year-pill { background: rgba(255,255,255,0.2); border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 700; cursor: pointer; }
+  .app-tabs { display: flex; }
+  .tab { flex: 1; text-align: center; padding: 7px 2px; font-size: 10px; font-weight: 600; opacity: 0.5; border-bottom: 2px solid transparent; }
+  .tab.active { opacity: 1; border-bottom: 2px solid white; }
+
+  .app-body { background: #f8fafc; padding: 10px; }
+  .month-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .month-name { font-size: 13px; font-weight: 700; }
+  .nav-arrow { font-size: 18px; color: #7c3aed; }
+  .stat-row { display: flex; gap: 6px; margin-bottom: 8px; }
+  .stat { flex: 1; background: white; border-radius: 10px; padding: 7px 5px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .stat-val { font-size: 12px; font-weight: 800; }
+  .stat-lbl { font-size: 7.5px; color: #9ca3af; margin-top: 1px; }
+  .entry { background: white; border-radius: 8px; padding: 7px 9px; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .entry-name { font-size: 10.5px; font-weight: 600; }
+  .entry-meta { font-size: 8px; color: #9ca3af; margin-top: 1px; }
+  .amount { font-size: 11.5px; font-weight: 800; white-space: nowrap; }
+  .neg { color: #ef4444; } .pos { color: #22c55e; } .gft { color: #a855f7; }
+  .add-btn { background: #5b21b6; color: white; border-radius: 10px; padding: 9px; text-align: center; font-size: 11px; font-weight: 700; margin-top: 8px; }
+
+  /* Form */
+  .form-header { background: linear-gradient(135deg, #5b21b6, #7c3aed); color: white; padding: 11px 12px; display: flex; align-items: center; gap: 8px; }
+  .form-title { font-size: 14px; font-weight: 700; flex: 1; }
+  .save-chip { background: white; color: #5b21b6; border-radius: 20px; padding: 3px 10px; font-size: 10px; font-weight: 800; }
+  .form-body { padding: 10px; background: #f8fafc; }
+  .field { margin-bottom: 8px; }
+  .field label { font-size: 8px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 3px; }
+  .mock-input { width: 100%; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 6px 8px; font-size: 11px; background: white; color: #374151; }
+  .chips { display: flex; flex-wrap: wrap; gap: 3px; }
+  .chip { border: 1.5px solid #e2e8f0; border-radius: 20px; padding: 3px 8px; font-size: 9px; font-weight: 600; color: #374151; background: white; }
+  .chip.sel { background: #5b21b6; color: white; border-color: #5b21b6; }
+  .hint { font-size: 8px; color: #a855f7; margin-top: 2px; }
+
+  /* Stats */
+  .bars { display: flex; align-items: flex-end; gap: 2px; height: 50px; }
+  .b { flex: 1; border-radius: 3px 3px 0 0; }
+  .bl { flex: 1; text-align: center; font-size: 6px; color: #9ca3af; }
+  .chart-box { background: white; border-radius: 10px; padding: 9px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 7px; }
+  .chart-lbl { font-size: 9px; color: #6b7280; font-weight: 700; margin-bottom: 6px; }
+  .profit-box { background: linear-gradient(135deg, #5b21b6, #7c3aed); border-radius: 10px; padding: 10px; color: white; margin-bottom: 7px; }
+
+  /* Columns table */
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .col-card { background: white; border-radius: 12px; padding: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .col-head { font-size: 12px; font-weight: 800; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 2px solid; }
+  .col-head.r { color: #dc2626; border-color: #fecaca; }
+  .col-head.i { color: #16a34a; border-color: #bbf7d0; }
+  .col-head.g { color: #7c3aed; border-color: #e9d5ff; }
+  .row { font-size: 11px; color: #374151; padding: 3px 0; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; }
+  .row:last-child { border: none; }
+  .badge { font-size: 8px; background: #f3e8ff; color: #7c3aed; border-radius: 4px; padding: 1px 5px; }
+  .badge.c { background: #ecfdf5; color: #16a34a; }
+
+  .note { background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 4px; padding: 8px 10px; font-size: 12px; color: #92400e; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<h1>🍒 ВИШНЯ — Дизайн v2</h1>
+<p class="subtitle">Точная структура данных по таблице · React + Google Sheets API</p>
+
+<!-- SCREENS -->
+<div class="section">
+  <div class="section-title">Экраны приложения</div>
+  <div class="screens">
+
+    <!-- List -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="app-header">
+          <div class="app-top">
+            <div class="app-title">🍒 ВИШНЯ</div>
+            <div class="year-pill">2025 ▾</div>
+          </div>
+          <div class="app-tabs">
+            <div class="tab active">Расходы</div>
+            <div class="tab">Доходы</div>
+            <div class="tab">Подарки</div>
+          </div>
+        </div>
+        <div class="app-body">
+          <div class="month-nav">
+            <span class="nav-arrow">‹</span>
+            <span class="month-name">01 Январь</span>
+            <span class="nav-arrow">›</span>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><div class="stat-val neg">−13 630₽</div><div class="stat-lbl">Расходы</div></div>
+            <div class="stat"><div class="stat-val" style="color:#7c3aed">65₽</div><div class="stat-lbl">Кэшбэк</div></div>
+          </div>
+          <div class="entry">
+            <div><div class="entry-name">Доставка фурнитуры</div><div class="entry-meta">Онлайн · Д · СДЭК</div></div>
+            <div class="amount neg">−420₽</div>
+          </div>
+          <div class="entry">
+            <div><div class="entry-name">Фурнитура</div><div class="entry-meta">Онлайн · М · ИП Росип</div></div>
+            <div class="amount neg">−6 635₽</div>
+          </div>
+          <div class="entry">
+            <div><div class="entry-name">Фурнитура Evo</div><div class="entry-meta">Маг.РОЗН · М · Forever</div></div>
+            <div class="amount neg">−6 574₽</div>
+          </div>
+          <div class="add-btn">+ Добавить расход</div>
+        </div>
+      </div>
+      <div class="phone-label">1. Список</div>
+    </div>
+
+    <!-- Form: Расходы -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="form-header">
+          <span style="font-size:16px">←</span>
+          <span class="form-title">Новый расход</span>
+          <span class="save-chip">Сохранить</span>
+        </div>
+        <div class="form-body">
+          <div class="field">
+            <label>Сумма (₽)</label>
+            <div class="mock-input" style="color:#9ca3af">0</div>
+          </div>
+          <div class="field">
+            <label>КАК</label>
+            <div class="chips">
+              <div class="chip sel">Онлайн</div>
+              <div class="chip">Маг. РОЗН</div>
+              <div class="chip">Маг. ОПТ</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Категория</label>
+            <div class="chips">
+              <div class="chip">М — Материалы</div>
+              <div class="chip">О — Оборудование</div>
+              <div class="chip">Д — Доставка</div>
+              <div class="chip">* — Прочее</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>ЧТО</label>
+            <div class="mock-input" style="color:#9ca3af">Фурнитура...</div>
+            <div class="hint">✦ подсказки из истории</div>
+          </div>
+          <div class="field">
+            <label>ГДЕ</label>
+            <div class="mock-input" style="color:#9ca3af">AliExpress, WB...</div>
+            <div class="hint">✦ подсказки из истории</div>
+          </div>
+          <div class="field">
+            <label>Оплата</label>
+            <div class="chips">
+              <div class="chip">Карта Тбанк</div>
+              <div class="chip">По тел. Тбанк</div>
+              <div class="chip">Перевод</div>
+              <div class="chip">Онлайн</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Категория оплаты</label>
+            <div class="hint">✦ подсказки из истории</div>
+            <div class="mock-input" style="color:#9ca3af;margin-top:3px">Различные товары...</div>
+          </div>
+          <div class="field" style="display:flex;gap:6px">
+            <div style="flex:1"><label>Кэшбэк</label><div class="mock-input" style="color:#9ca3af">0</div></div>
+            <div style="flex:1"><label>Скидки</label><div class="mock-input" style="color:#9ca3af">-</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">2. Форма расходов</div>
+    </div>
+
+    <!-- Form: Доходы -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="form-header">
+          <span style="font-size:16px">←</span>
+          <span class="form-title">Новый доход</span>
+          <span class="save-chip">Сохранить</span>
+        </div>
+        <div class="form-body">
+          <div class="field">
+            <label>Сумма (₽)</label>
+            <div class="mock-input" style="color:#9ca3af">0</div>
+          </div>
+          <div class="field">
+            <label>ЧТО (изделие)</label>
+            <div class="mock-input" style="color:#9ca3af">Колье, браслет...</div>
+            <div class="hint">✦ подсказки из истории</div>
+          </div>
+          <div class="field">
+            <label>КОМУ</label>
+            <div class="mock-input" style="color:#9ca3af">Анна Николаевна...</div>
+            <div class="hint">✦ подсказки из истории</div>
+          </div>
+          <div class="field">
+            <label>Предоплата</label>
+            <div class="mock-input" style="color:#9ca3af">100%, 50%...</div>
+          </div>
+          <div class="field">
+            <label>Доставка</label>
+            <div class="mock-input" style="color:#9ca3af">СДЭК, Почта...</div>
+          </div>
+          <div class="field">
+            <label>ГДЕ заказали</label>
+            <div class="chips">
+              <div class="chip">ТГ</div>
+              <div class="chip">WA</div>
+              <div class="chip">Inst</div>
+              <div class="chip">Лично</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Откуда пришли</label>
+            <div class="mock-input" style="color:#9ca3af">Канал, рекомендация...</div>
+            <div class="hint">✦ подсказки из истории</div>
+          </div>
+          <div class="field">
+            <label>Отзыв</label>
+            <div class="chips">
+              <div class="chip">Да</div>
+              <div class="chip">Нет</div>
+              <div class="chip">—</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Скидки</label>
+            <div class="mock-input" style="color:#9ca3af">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">3. Форма доходов</div>
+    </div>
+
+    <!-- Form: Подарки -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="form-header">
+          <span style="font-size:16px">←</span>
+          <span class="form-title">Новый подарок</span>
+          <span class="save-chip">Сохранить</span>
+        </div>
+        <div class="form-body">
+          <div class="field">
+            <label>Сумма (₽)</label>
+            <div class="mock-input" style="color:#9ca3af">0</div>
+          </div>
+          <div class="field">
+            <label>ЧТО</label>
+            <div class="mock-input" style="color:#9ca3af">Серьги, колье...</div>
+            <div class="hint">✦ подсказки из истории</div>
+          </div>
+          <div class="field">
+            <label>КОМУ</label>
+            <div class="mock-input" style="color:#9ca3af">Маме, подруге...</div>
+            <div class="hint">✦ подсказки из истории</div>
+          </div>
+          <div class="field">
+            <label>Отзыв</label>
+            <div class="chips">
+              <div class="chip">Да</div>
+              <div class="chip">Нет</div>
+              <div class="chip">—</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Доставка</label>
+            <div class="mock-input" style="color:#9ca3af">СДЭК, лично...</div>
+          </div>
+          <div class="field">
+            <label>Повод</label>
+            <div class="mock-input" style="color:#9ca3af">День рождения...</div>
+            <div class="hint">✦ подсказки из истории</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">4. Форма подарков</div>
+    </div>
+  </div>
+</div>
+
+<!-- COLUMNS -->
+<div class="section">
+  <div class="section-title">Точная структура полей (из таблицы)</div>
+  <div class="cols">
+    <div class="col-card">
+      <div class="col-head r">📉 РАСХОДЫ (A–I)</div>
+      <div class="row">СУММА <span class="badge c">число</span></div>
+      <div class="row">КАК <span class="badge">чипы</span></div>
+      <div class="row">Категория (М/О/Д/*) <span class="badge">чипы</span></div>
+      <div class="row">ЧТО <span class="badge">автодополн.</span></div>
+      <div class="row">ГДЕ <span class="badge">автодополн.</span></div>
+      <div class="row">Оплата <span class="badge">автодополн.</span></div>
+      <div class="row">Категория оплаты <span class="badge">автодополн.</span></div>
+      <div class="row">Кэшбэк <span class="badge c">число</span></div>
+      <div class="row">Скидки <span class="badge">текст</span></div>
+    </div>
+    <div class="col-card">
+      <div class="col-head i">📈 ДОХОДЫ (J–R)</div>
+      <div class="row">СУММА <span class="badge c">число</span></div>
+      <div class="row">ЧТО <span class="badge">автодополн.</span></div>
+      <div class="row">КОМУ <span class="badge">автодополн.</span></div>
+      <div class="row">Предоплата <span class="badge">текст</span></div>
+      <div class="row">Доставка <span class="badge">текст</span></div>
+      <div class="row">ГДЕ заказали <span class="badge">чипы</span></div>
+      <div class="row">Откуда пришли <span class="badge">автодополн.</span></div>
+      <div class="row">Отзыв <span class="badge">чипы</span></div>
+      <div class="row">Скидки <span class="badge">текст</span></div>
+    </div>
+    <div class="col-card">
+      <div class="col-head g">🎁 ПОДАРКИ (S–X)</div>
+      <div class="row">СУММА <span class="badge c">число</span></div>
+      <div class="row">ЧТО <span class="badge">автодополн.</span></div>
+      <div class="row">КОМУ <span class="badge">автодополн.</span></div>
+      <div class="row">Отзыв <span class="badge">чипы</span></div>
+      <div class="row">Доставка <span class="badge">текст</span></div>
+      <div class="row">Повод <span class="badge">автодополн.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTES -->
+<div class="section">
+  <div class="section-title">Важные детали</div>
+  <div class="note">🗓️ <b>Переход на новый год</b> — при добавлении записи 1 января 2026 приложение создаёт новый лист "1. Общая 2026" по образцу текущего. Переключатель года в шапке.</div>
+  <div class="note" style="background:#ede9fe;border-color:#7c3aed;color:#4c1d95">✨ <b>Умное автодополнение</b> — при загрузке считываются уникальные значения из всех существующих строк. Поля с фиксированными вариантами (КАК, Категория, ГДЕ заказали, Отзыв) — чипы. Свободные поля (ЧТО, ГДЕ, КОМУ и др.) — текст с выпадающими подсказками.</div>
+  <div class="note" style="background:#f0fdf4;border-color:#22c55e;color:#14532d">📊 <b>Статистика</b> — графики Chart.js: расходы/доходы по месяцам, кэшбэк за год, кол-во подарков. Переключение месяц / весь год.</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<h2>Как переключаться между разделами?</h2>
+<p class="subtitle">Выбери вариант навигации для мобильного приложения</p>
+
+<div class="cards">
+  <div class="card" data-choice="tabs-bottom" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f8f4ff;padding:16px;border-radius:8px;">
+      <div style="border:2px solid #ccc;border-radius:12px;overflow:hidden;max-width:180px;margin:0 auto;font-size:12px;">
+        <div style="background:#fff;padding:12px;min-height:100px;text-align:center;color:#888">
+          <div style="font-size:11px;color:#aaa;margin-top:30px">содержимое раздела</div>
+        </div>
+        <div style="background:#7c3aed;color:white;display:flex;justify-content:space-around;padding:10px 0;font-size:10px;">
+          <div style="text-align:center">📉<br>Расходы</div>
+          <div style="text-align:center;opacity:0.6">📈<br>Доходы</div>
+          <div style="text-align:center;opacity:0.6">🎁<br>Подарки</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Вкладки снизу</h3>
+      <p>Стандартный мобильный паттерн. Все разделы видны сразу, переключение одним касанием.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="tabs-top" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f0f9ff;padding:16px;border-radius:8px;">
+      <div style="border:2px solid #ccc;border-radius:12px;overflow:hidden;max-width:180px;margin:0 auto;font-size:12px;">
+        <div style="background:#0284c7;color:white;display:flex;justify-content:space-around;padding:8px 0;font-size:10px;">
+          <div style="text-align:center;font-weight:bold;border-bottom:2px solid white;padding-bottom:4px">Расходы</div>
+          <div style="text-align:center;opacity:0.6">Доходы</div>
+          <div style="text-align:center;opacity:0.6">Подарки</div>
+        </div>
+        <div style="background:#fff;padding:12px;min-height:100px;text-align:center;color:#888">
+          <div style="font-size:11px;color:#aaa;margin-top:30px">содержимое раздела</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Вкладки сверху</h3>
+      <p>Привычный стиль в духе таблиц. Навигация наверху, контент внизу.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="home-screen" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#fff7ed;padding:16px;border-radius:8px;">
+      <div style="border:2px solid #ccc;border-radius:12px;overflow:hidden;max-width:180px;margin:0 auto;font-size:12px;">
+        <div style="background:#ea580c;color:white;padding:8px;text-align:center;font-size:11px;font-weight:bold;">ВИШНЯ 🍒</div>
+        <div style="background:#fff;padding:10px;display:flex;flex-direction:column;gap:8px;">
+          <div style="background:#fef2f2;border-radius:8px;padding:8px;text-align:center;font-size:11px;font-weight:bold;">📉 Расходы</div>
+          <div style="background:#f0fdf4;border-radius:8px;padding:8px;text-align:center;font-size:11px;font-weight:bold;">📈 Доходы</div>
+          <div style="background:#fdf4ff;border-radius:8px;padding:8px;text-align:center;font-size:11px;font-weight:bold;">🎁 Подарки</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Главный экран с карточками</h3>
+      <p>Стартовый экран с выбором раздела, потом переход внутрь. Более структурировано.</p>
+    </div>
+  </div>
+</div>
