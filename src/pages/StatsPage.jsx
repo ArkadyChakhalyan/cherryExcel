@@ -54,49 +54,53 @@ export default function StatsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col max-w-md mx-auto">
-      <div className="bg-gradient-to-r from-brand-dark to-brand-light text-white px-4 py-3 flex items-center gap-3 shrink-0">
-        <button onClick={() => navigate('/')} className="text-xl">←</button>
-        <h2 className="flex-1 text-base font-bold">Статистика</h2>
-        <div className="flex gap-1 bg-white/20 rounded-full p-0.5 text-xs font-semibold">
-          <button onClick={() => setView('month')} className={`px-3 py-1 rounded-full ${view==='month'?'bg-white text-brand':''}`}>Месяц</button>
-          <button onClick={() => setView('year')} className={`px-3 py-1 rounded-full ${view==='year'?'bg-white text-brand':''}`}>Год</button>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="bg-gradient-to-r from-brand-dark to-brand-light text-white px-4 py-3 shrink-0">
+        <div className="max-w-6xl mx-auto flex items-center gap-3">
+          <button onClick={() => navigate('/')} className="text-xl">←</button>
+          <h2 className="flex-1 text-base font-bold">Статистика</h2>
+          <div className="flex gap-1 bg-white/20 rounded-full p-0.5 text-xs font-semibold">
+            <button onClick={() => setView('month')} className={`px-3 py-1 rounded-full ${view==='month'?'bg-white text-brand':''}`}>Месяц</button>
+            <button onClick={() => setView('year')} className={`px-3 py-1 rounded-full ${view==='year'?'bg-white text-brand':''}`}>Год</button>
+          </div>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
-        {/* Summary cards */}
-        <div className="grid grid-cols-2 gap-3">
-          <SCard label="Доходы" value={`${totalIncome.toLocaleString('ru')} ₽`} color="text-green-500" />
-          <SCard label="Расходы" value={`${totalExpense.toLocaleString('ru')} ₽`} color="text-red-500" />
-          <SCard label="Чистая прибыль" value={`${(totalIncome - totalExpense).toLocaleString('ru')} ₽`} color="text-brand" />
-          <SCard label="Кэшбэк" value={`${totalCashback.toLocaleString('ru')} ₽`} color="text-brand" />
-          <SCard label="Подарков" value={giftCount} color="text-brand" />
-          <SCard label="В работе" value={openOrders} color="text-orange-500" />
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-6xl mx-auto px-4 py-4 space-y-4">
+          {/* Summary cards */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <SCard label="Доходы" value={`${totalIncome.toLocaleString('ru')} ₽`} color="text-green-500" />
+            <SCard label="Расходы" value={`${totalExpense.toLocaleString('ru')} ₽`} color="text-red-500" />
+            <SCard label="Чистая прибыль" value={`${(totalIncome - totalExpense).toLocaleString('ru')} ₽`} color="text-brand" />
+            <SCard label="Кэшбэк" value={`${totalCashback.toLocaleString('ru')} ₽`} color="text-brand" />
+            <SCard label="Подарков" value={giftCount} color="text-brand" />
+            <SCard label="В работе" value={openOrders} color="text-orange-500" />
+          </div>
+
+          {/* Charts side by side on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {view === 'year' && (
+              <div className="bg-white rounded-2xl p-4 shadow-sm">
+                <h3 className="text-xs font-bold text-gray-500 uppercase mb-3">Доходы и расходы по месяцам</h3>
+                <div style={{ height: 220 }}>
+                  <Bar data={barData} options={barOptions} />
+                </div>
+              </div>
+            )}
+            {sourceLabels.length > 0 && (
+              <div className="bg-white rounded-2xl p-4 shadow-sm">
+                <h3 className="text-xs font-bold text-gray-500 uppercase mb-3">Откуда пришли клиенты</h3>
+                <div style={{ height: 220 }}>
+                  <Pie
+                    data={{ labels: sourceLabels, datasets: [{ data: sourceData, backgroundColor: pieColors }] }}
+                    options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } } }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-
-        {/* Bar chart — only meaningful for year view */}
-        {view === 'year' && (
-          <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <h3 className="text-xs font-bold text-gray-500 uppercase mb-3">Доходы и расходы по месяцам</h3>
-            <div style={{ height: 200 }}>
-              <Bar data={barData} options={barOptions} />
-            </div>
-          </div>
-        )}
-
-        {/* Pie — sources */}
-        {sourceLabels.length > 0 && (
-          <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <h3 className="text-xs font-bold text-gray-500 uppercase mb-3">Откуда пришли клиенты</h3>
-            <div style={{ height: 180 }}>
-              <Pie
-                data={{ labels: sourceLabels, datasets: [{ data: sourceData, backgroundColor: pieColors }] }}
-                options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } } }}
-              />
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )

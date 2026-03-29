@@ -16,21 +16,25 @@ export default function ListPage() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col max-w-md mx-auto">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
       <TabBar />
       <div className="flex-1 overflow-y-auto">
-        <MonthNav />
-        <StatCards />
-        <EntryList />
+        <div className="max-w-6xl mx-auto">
+          <MonthNav />
+          <StatCards />
+          <EntryList />
+        </div>
       </div>
       <div className="px-4 pb-6 pt-2 bg-gray-50 border-t border-gray-100">
-        <button
-          onClick={() => navigate(`/add/${ADD_ROUTES[tab]}`)}
-          className="w-full bg-brand text-white rounded-2xl py-3.5 font-bold text-sm active:scale-95 transition-transform shadow-md"
-        >
-          {ADD_LABELS[tab]}
-        </button>
+        <div className="max-w-6xl mx-auto">
+          <button
+            onClick={() => navigate(`/add/${ADD_ROUTES[tab]}`)}
+            className="w-full bg-brand text-white rounded-2xl py-3.5 font-bold text-sm active:scale-95 transition-transform shadow-md"
+          >
+            {ADD_LABELS[tab]}
+          </button>
+        </div>
       </div>
       <Toast toast={toast} />
     </div>

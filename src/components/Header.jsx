@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <div className="bg-gradient-to-r from-brand-dark to-brand-light text-white px-4 pt-3 pb-0 relative">
-      <div className="flex items-center justify-between mb-2">
+      <div className="max-w-6xl mx-auto flex items-center justify-between mb-2">
         <h1 className="text-xl font-extrabold tracking-wide">🍒 ВИШНЯ</h1>
         <div className="flex items-center gap-3">
           <button onClick={refresh} className="text-white/70 text-xs" title="Обновить">↻</button>

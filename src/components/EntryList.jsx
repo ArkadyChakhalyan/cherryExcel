@@ -14,7 +14,7 @@ export default function EntryList() {
   if (visible.length === 0) return <div className="text-center py-10 text-gray-300 text-sm">Записей нет</div>
 
   return (
-    <div className="px-4 pb-4">
+    <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
       {visible.map((e, i) => <EntryCard key={`${e.rowIndex}-${i}`} entry={e} />)}
     </div>
   )

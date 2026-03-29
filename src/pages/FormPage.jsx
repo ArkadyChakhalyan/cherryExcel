@@ -45,22 +45,26 @@ export default function FormPage({ mode }) {
   const typeSuggestions = suggestions?.[type]
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col max-w-md mx-auto">
-      <div className="bg-gradient-to-r from-brand-dark to-brand-light text-white px-4 py-3 flex items-center gap-3 shrink-0">
-        <button onClick={() => navigate('/')} className="text-xl">←</button>
-        <h2 className="flex-1 text-base font-bold">
-          {isEdit ? 'Редактировать' : 'Новый'} {TITLES[type]}
-        </h2>
-        <button
-          onClick={handleSave}
-          disabled={saving || !data.sum}
-          className="bg-white text-brand rounded-full px-4 py-1.5 text-xs font-bold disabled:opacity-40"
-        >
-          {saving ? '…' : 'Сохранить'}
-        </button>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="bg-gradient-to-r from-brand-dark to-brand-light text-white px-4 py-3 shrink-0">
+        <div className="max-w-2xl mx-auto flex items-center gap-3">
+          <button onClick={() => navigate('/')} className="text-xl">←</button>
+          <h2 className="flex-1 text-base font-bold">
+            {isEdit ? 'Редактировать' : 'Новый'} {TITLES[type]}
+          </h2>
+          <button
+            onClick={handleSave}
+            disabled={saving || !data.sum}
+            className="bg-white text-brand rounded-full px-4 py-1.5 text-xs font-bold disabled:opacity-40"
+          >
+            {saving ? '…' : 'Сохранить'}
+          </button>
+        </div>
       </div>
-      <div className="flex-1 overflow-y-auto px-4 py-4">
-        <FormComponent data={data} onChange={setData} suggestions={typeSuggestions} />
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-2xl mx-auto px-4 py-4">
+          <FormComponent data={data} onChange={setData} suggestions={typeSuggestions} />
+        </div>
       </div>
       <Toast toast={toast} />
     </div>
