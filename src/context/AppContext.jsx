@@ -29,7 +29,7 @@ function reducer(state, action) {
 }
 
 export function AppProvider({ token, logout, children }) {
-  const sheets = useSheets(token)
+  const { readSheet, listSheets, insertRow, updateRow, addSheet } = useSheets(token)
   const [sheetName, setSheetName] = useState(() => `1. Общая ${new Date().getFullYear()}`)
   const [toast, setToast] = useState(null)
 
@@ -52,7 +52,7 @@ export function AppProvider({ token, logout, children }) {
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null')
       if (cached && cached.sheet === name && Date.now() - cached.ts < CACHE_TTL) {
-        const allSheets = await sheets.listSheets()
+        const allSheets = await listSheets()
         dispatch({ type: 'SET_DATA', entries: cached.entries, allSheets })
         return
       }
@@ -60,7 +60,7 @@ export function AppProvider({ token, logout, children }) {
 
     dispatch({ type: 'SET_LOADING', loading: true })
     try {
-      const [rows, allSheets] = await Promise.all([sheets.readSheet(name), sheets.listSheets()])
+      const [rows, allSheets] = await Promise.all([readSheet(name), listSheets()])
       const entries = parseSheetRows(rows)
       localStorage.setItem(CACHE_KEY, JSON.stringify({ sheet: name, entries, ts: Date.now() }))
       dispatch({ type: 'SET_DATA', entries, allSheets })
@@ -68,7 +68,7 @@ export function AppProvider({ token, logout, children }) {
       dispatch({ type: 'SET_ERROR', error: err.message })
       showToast('Ошибка загрузки данных', true)
     }
-  }, [sheets, showToast])
+  }, [readSheet, listSheets, showToast])
 
   useEffect(() => { loadData(sheetName) }, [sheetName, loadData])
 
@@ -77,7 +77,7 @@ export function AppProvider({ token, logout, children }) {
     if (!state.allSheets.includes(name)) {
       try {
         const prevName = `1. Общая ${year - 1}`
-        await sheets.addSheet(name, prevName)
+        await addSheet(name, prevName)
         showToast(`Создан лист ${name}`)
       } catch (err) {
         showToast(`Не удалось создать лист: ${err.message}`, true)
@@ -86,10 +86,10 @@ export function AppProvider({ token, logout, children }) {
     }
     setSheetName(name)
     dispatch({ type: 'SET_YEAR', year })
-  }, [state.allSheets, sheets, showToast])
+  }, [state.allSheets, addSheet, showToast])
 
   const findInsertIndex = useCallback(async () => {
-    const rows = await sheets.readSheet(sheetName)
+    const rows = await readSheet(sheetName)
     const targetPrefix = MONTH_PREFIXES[state.month]
     let inTargetMonth = false
     for (let i = 3; i < rows.length; i++) {
@@ -99,13 +99,13 @@ export function AppProvider({ token, logout, children }) {
       if (inTargetMonth && cell1.startsWith('Возврат:')) return i
     }
     return rows.length
-  }, [sheets, sheetName, state.month])
+  }, [readSheet, sheetName, state.month])
 
   const saveEntry = useCallback(async (entry) => {
     const row = entryToRow(entry)
     try {
       const insertIdx = await findInsertIndex()
-      await sheets.insertRow(sheetName, insertIdx, row)
+      await insertRow(sheetName, insertIdx, row)
       const newEntry = { ...entry, rowIndex: insertIdx }
       dispatch({ type: 'ADD_ENTRY', entry: newEntry })
       localStorage.removeItem(CACHE_KEY)
@@ -115,12 +115,12 @@ export function AppProvider({ token, logout, children }) {
       showToast(`Ошибка сохранения: ${err.message}`, true)
       return false
     }
-  }, [sheets, sheetName, findInsertIndex, showToast])
+  }, [insertRow, sheetName, findInsertIndex, showToast])
 
   const editEntry = useCallback(async (entry) => {
     const row = entryToRow(entry)
     try {
-      await sheets.updateRow(sheetName, entry.rowIndex, row)
+      await updateRow(sheetName, entry.rowIndex, row)
       dispatch({ type: 'UPDATE_ENTRY', entry })
       localStorage.removeItem(CACHE_KEY)
       showToast('Обновлено ✓')
@@ -129,7 +129,7 @@ export function AppProvider({ token, logout, children }) {
       showToast(`Ошибка обновления: ${err.message}`, true)
       return false
     }
-  }, [sheets, sheetName, showToast])
+  }, [updateRow, sheetName, showToast])
 
   const refresh = useCallback(() => {
     localStorage.removeItem(CACHE_KEY)
