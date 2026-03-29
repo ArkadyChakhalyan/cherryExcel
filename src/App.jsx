@@ -11,7 +11,7 @@ export default function App() {
   if (!isLoggedIn) return <LoginPage onLogin={saveToken} />
   return (
     <AppProvider token={token} logout={logout}>
-      <BrowserRouter basename="/vishnya">
+      <BrowserRouter basename="/cherryExcel">
         <Routes>
           <Route path="/" element={<ListPage />} />
           <Route path="/add/:type" element={<FormPage mode="add" />} />
