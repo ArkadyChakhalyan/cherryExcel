@@ -23,7 +23,23 @@ export function useSheets(token) {
     const res = await fetch(url, { headers })
     if (!res.ok) throw new Error(`listSheets failed: ${res.status}`)
     const data = await res.json()
-    return data.sheets.map(s => s.properties.title)
+    return (data.sheets ?? []).map(s => s.properties.title)
+  }, [token])
+
+  /**
+   * Overwrite a specific row (0-based rowIndex) with rowData.
+   * IMPORTANT: declared before insertRow so insertRow can reference it.
+   */
+  const updateRow = useCallback(async (sheetName, rowIndex, rowData) => {
+    const a1Row = rowIndex + 1  // Sheets API is 1-based
+    const range = encodeURIComponent(`${sheetName}!A${a1Row}:Z${a1Row}`)
+    const url = `${BASE}/${SPREADSHEET_ID}/values/${range}?valueInputOption=USER_ENTERED`
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({ range: `${sheetName}!A${a1Row}:Z${a1Row}`, majorDimension: 'ROWS', values: [rowData] }),
+    })
+    if (!res.ok) throw new Error(`updateRow failed: ${res.status}`)
   }, [token])
 
   /**
@@ -55,22 +71,7 @@ export function useSheets(token) {
 
     // 3. Write data to the new row
     await updateRow(sheetName, rowIndex, rowData)
-  }, [token])
-
-  /**
-   * Overwrite a specific row (0-based rowIndex) with rowData.
-   */
-  const updateRow = useCallback(async (sheetName, rowIndex, rowData) => {
-    const a1Row = rowIndex + 1  // Sheets API is 1-based
-    const range = encodeURIComponent(`${sheetName}!A${a1Row}:Z${a1Row}`)
-    const url = `${BASE}/${SPREADSHEET_ID}/values/${range}?valueInputOption=USER_ENTERED`
-    const res = await fetch(url, {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify({ range: `${sheetName}!A${a1Row}:Z${a1Row}`, majorDimension: 'ROWS', values: [rowData] }),
-    })
-    if (!res.ok) throw new Error(`updateRow failed: ${res.status}`)
-  }, [token])
+  }, [token, updateRow])
 
   /**
    * Create a new sheet tab by copying headers from `sourceSheetName`.
@@ -93,11 +94,12 @@ export function useSheets(token) {
     // Write header rows to new sheet
     const range = encodeURIComponent(`${newSheetName}!A1:Z3`)
     const url = `${BASE}/${SPREADSHEET_ID}/values/${range}?valueInputOption=USER_ENTERED`
-    await fetch(url, {
+    const writeRes = await fetch(url, {
       method: 'PUT',
       headers,
       body: JSON.stringify({ range: `${newSheetName}!A1:Z3`, majorDimension: 'ROWS', values: sourceRows.slice(0, 3) }),
     })
+    if (!writeRes.ok) throw new Error(`addSheet header write failed: ${writeRes.status}`)
   }, [token, readSheet])
 
   return { readSheet, listSheets, insertRow, updateRow, addSheet }
