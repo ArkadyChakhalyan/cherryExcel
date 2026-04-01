@@ -24,6 +24,10 @@ function reducer(state, action) {
       ...state,
       entries: state.entries.map(e => e.rowIndex === action.entry.rowIndex ? action.entry : e),
     }
+    case 'DELETE_ENTRY': return {
+      ...state,
+      entries: state.entries.filter(e => e.rowIndex !== action.rowIndex),
+    }
     default: return state
   }
 }
@@ -92,21 +96,36 @@ export function AppProvider({ token, logout, children }) {
     const rows = await readSheet(sheetName)
     const targetPrefix = MONTH_PREFIXES[state.month]
     let inTargetMonth = false
+    let firstEmptyInMonth = null
     for (let i = 3; i < rows.length; i++) {
       const cell0 = (rows[i][0] || '').toString().trim()
       const cell1 = (rows[i][1] || '').toString().trim()
       if (cell0.startsWith(targetPrefix.split(' ')[0] + ' ')) inTargetMonth = true
-      if (inTargetMonth && cell1.startsWith('Возврат:')) return i
+      if (inTargetMonth) {
+        if (cell1.startsWith('Возврат:')) {
+          // Prefer reusing an existing empty row over inserting a new one
+          if (firstEmptyInMonth !== null) return { index: firstEmptyInMonth, reuse: true }
+          return { index: i, reuse: false }
+        }
+        // Track first truly empty row in this month's section
+        const rowIsEmpty = (rows[i] || []).every(cell => (cell ?? '').toString().trim() === '')
+        if (rowIsEmpty && firstEmptyInMonth === null) firstEmptyInMonth = i
+      }
     }
-    return rows.length
+    if (firstEmptyInMonth !== null) return { index: firstEmptyInMonth, reuse: true }
+    return { index: rows.length, reuse: false }
   }, [readSheet, sheetName, state.month])
 
   const saveEntry = useCallback(async (entry) => {
     const row = entryToRow(entry)
     try {
-      const insertIdx = await findInsertIndex()
-      await insertRow(sheetName, insertIdx, row)
-      const newEntry = { ...entry, rowIndex: insertIdx }
+      const { index, reuse } = await findInsertIndex()
+      if (reuse) {
+        await updateRow(sheetName, index, row)
+      } else {
+        await insertRow(sheetName, index, row)
+      }
+      const newEntry = { ...entry, rowIndex: index }
       dispatch({ type: 'ADD_ENTRY', entry: newEntry })
       localStorage.removeItem(CACHE_KEY)
       showToast('Сохранено ✓')
@@ -115,7 +134,7 @@ export function AppProvider({ token, logout, children }) {
       showToast(`Ошибка сохранения: ${err.message}`, true)
       return false
     }
-  }, [insertRow, sheetName, findInsertIndex, showToast])
+  }, [insertRow, updateRow, sheetName, findInsertIndex, showToast])
 
   const editEntry = useCallback(async (entry) => {
     const row = entryToRow(entry)
@@ -127,6 +146,19 @@ export function AppProvider({ token, logout, children }) {
       return true
     } catch (err) {
       showToast(`Ошибка обновления: ${err.message}`, true)
+      return false
+    }
+  }, [updateRow, sheetName, showToast])
+
+  const deleteEntry = useCallback(async (entry) => {
+    try {
+      await updateRow(sheetName, entry.rowIndex, [])
+      dispatch({ type: 'DELETE_ENTRY', rowIndex: entry.rowIndex })
+      localStorage.removeItem(CACHE_KEY)
+      showToast('Удалено ✓')
+      return true
+    } catch (err) {
+      showToast(`Ошибка удаления: ${err.message}`, true)
       return false
     }
   }, [updateRow, sheetName, showToast])
@@ -150,6 +182,7 @@ export function AppProvider({ token, logout, children }) {
       setMonth,
       saveEntry,
       editEntry,
+      deleteEntry,
       refresh,
       logout,
       suggestions,
