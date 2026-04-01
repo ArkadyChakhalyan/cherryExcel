@@ -102,5 +102,14 @@ export function useSheets(token) {
     if (!writeRes.ok) throw new Error(`addSheet header write failed: ${writeRes.status}`)
   }, [token, readSheet])
 
-  return { readSheet, listSheets, insertRow, updateRow, addSheet }
+  /** Clear all cells in a specific row (0-based rowIndex). */
+  const clearRow = useCallback(async (sheetName, rowIndex) => {
+    const a1Row = rowIndex + 1
+    const range = encodeURIComponent(`${sheetName}!A${a1Row}:Z${a1Row}`)
+    const url = `${BASE}/${SPREADSHEET_ID}/values/${range}:clear`
+    const res = await fetch(url, { method: 'POST', headers })
+    if (!res.ok) throw new Error(`clearRow failed: ${res.status}`)
+  }, [token])
+
+  return { readSheet, listSheets, insertRow, updateRow, clearRow, addSheet }
 }

@@ -33,7 +33,7 @@ function reducer(state, action) {
 }
 
 export function AppProvider({ token, logout, children }) {
-  const { readSheet, listSheets, insertRow, updateRow, addSheet } = useSheets(token)
+  const { readSheet, listSheets, insertRow, updateRow, clearRow, addSheet } = useSheets(token)
   const [sheetName, setSheetName] = useState(() => `1. Общая ${new Date().getFullYear()}`)
   const [toast, setToast] = useState(null)
 
@@ -152,7 +152,7 @@ export function AppProvider({ token, logout, children }) {
 
   const deleteEntry = useCallback(async (entry) => {
     try {
-      await updateRow(sheetName, entry.rowIndex, [])
+      await clearRow(sheetName, entry.rowIndex)
       dispatch({ type: 'DELETE_ENTRY', rowIndex: entry.rowIndex })
       localStorage.removeItem(CACHE_KEY)
       showToast('Удалено ✓')
@@ -161,7 +161,7 @@ export function AppProvider({ token, logout, children }) {
       showToast(`Ошибка удаления: ${err.message}`, true)
       return false
     }
-  }, [updateRow, sheetName, showToast])
+  }, [clearRow, sheetName, showToast])
 
   const refresh = useCallback(() => {
     localStorage.removeItem(CACHE_KEY)
