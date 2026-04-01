@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { formatForDisplay } from '../utils/dateUtils.js'
 
-export default function EntryCard({ entry }) {
+export default function EntryCard({ entry, onDelete }) {
   const navigate = useNavigate()
 
   let title = '', meta = '', amountStr = '', amountColor = ''
@@ -38,6 +38,11 @@ export default function EntryCard({ entry }) {
         className="text-gray-300 hover:text-brand text-lg shrink-0 ml-1"
         title="Редактировать"
       >✏️</button>
+      <button
+        onClick={() => onDelete(entry)}
+        className="text-gray-300 hover:text-red-400 text-lg shrink-0"
+        title="Удалить"
+      >🗑️</button>
     </div>
   )
 }
