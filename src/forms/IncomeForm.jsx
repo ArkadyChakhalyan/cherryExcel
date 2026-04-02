@@ -36,7 +36,7 @@ export default function IncomeForm({ data, onChange, suggestions }) {
       </Field>
       <Field label="Предоплата">
         <input type="text" value={f('predoplata')} onChange={e => set('predoplata')(e.target.value)}
-          placeholder="100%, 50%…" style={{ border: '1.5px solid #ede9fe', borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm focus:outline-none focus:border-brand" />
+          placeholder="100%, 50%…" style={{ borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm border border-[#ede9fe] focus:outline-none focus:border-brand" />
       </Field>
       <Field label="Доставка">
         <AutocompleteInput value={f('dostavka')} onChange={set('dostavka')} suggestions={suggestions?.dostavka} placeholder="СДЭК, Почта…" />
@@ -52,11 +52,11 @@ export default function IncomeForm({ data, onChange, suggestions }) {
       </Field>
       <Field label="Скидки">
         <input type="text" value={f('skidki')} onChange={e => set('skidki')(e.target.value)}
-          placeholder="-" style={{ border: '1.5px solid #ede9fe', borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm focus:outline-none focus:border-brand" />
+          placeholder="-" style={{ borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm border border-[#ede9fe] focus:outline-none focus:border-brand" />
       </Field>
       <Field label="Дата">
         <input type="date" value={dateToDMY(f('date'))} onChange={e => set('date')(dmyFromDate(e.target.value))}
-          style={{ border: '1.5px solid #ede9fe', borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm focus:outline-none focus:border-brand" />
+          style={{ borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm border border-[#ede9fe] focus:outline-none focus:border-brand" />
       </Field>
     </div>
   )

@@ -42,7 +42,7 @@ export default function GiftForm({ data, onChange, suggestions }) {
       </Field>
       <Field label="Дата">
         <input type="date" value={dateToDMY(f('date'))} onChange={e => set('date')(dmyFromDate(e.target.value))}
-          style={{ border: '1.5px solid #ede9fe', borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm focus:outline-none focus:border-brand" />
+          style={{ borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm border border-[#ede9fe] focus:outline-none focus:border-brand" />
       </Field>
     </div>
   )

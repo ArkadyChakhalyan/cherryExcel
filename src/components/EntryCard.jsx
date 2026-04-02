@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom'
 import { formatForDisplay } from '../utils/dateUtils.js'
 
 const STRIPE_COLOR = { expense: '#ef4444', income: '#22c55e', gift: '#7c3aed' }
-const AMOUNT_COLOR = { expense: '#ef4444', income: '#22c55e', gift: '#7c3aed' }
 const TYPE_CHIP_STYLE = {
   expense: { background: '#fef2f2', color: '#ef4444' },
   income:  { background: '#f0fdf4', color: '#22c55e' },
@@ -58,7 +57,7 @@ export default function EntryCard({ entry, onDelete }) {
       </div>
 
       {/* Amount */}
-      <div style={{ fontWeight: 900, color: AMOUNT_COLOR[entry.type] }} className="text-sm shrink-0">{amountStr}</div>
+      <div style={{ fontWeight: 900, color: STRIPE_COLOR[entry.type] }} className="text-sm shrink-0">{amountStr}</div>
 
       {/* Edit button */}
       <button
