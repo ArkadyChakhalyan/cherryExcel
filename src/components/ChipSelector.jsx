@@ -6,11 +6,11 @@ export default function ChipSelector({ options, value, onChange, labelMap }) {
           key={opt}
           type="button"
           onClick={() => onChange(opt === value ? '' : opt)}
-          className={`px-3 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
-            value === opt
-              ? 'bg-brand text-white border-brand'
-              : 'bg-white text-gray-700 border-gray-200'
-          }`}
+          style={value === opt
+            ? { background: '#6d28d9', color: 'white', border: '1px solid #6d28d9' }
+            : { background: '#f3f0ff', color: '#6d28d9', border: '1px solid #ddd6fe' }
+          }
+          className="px-3 py-1.5 rounded-full text-sm font-semibold transition-colors"
         >
           {labelMap ? labelMap[opt] ?? opt : opt}
         </button>
