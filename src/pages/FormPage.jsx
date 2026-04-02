@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useApp } from '../context/AppContext.jsx'
 import { todayDDMMYYYY } from '../utils/dateUtils.js'
+import Header from '../components/Header.jsx'
 import ExpenseForm from '../forms/ExpenseForm.jsx'
 import IncomeForm from '../forms/IncomeForm.jsx'
 import GiftForm from '../forms/GiftForm.jsx'
@@ -41,26 +42,28 @@ export default function FormPage({ mode }) {
     if (ok) navigate('/')
   }
 
+  const saveButton = (
+    <button
+      onClick={handleSave}
+      disabled={saving || !data.sum}
+      style={{ background: 'white', color: '#6d28d9', fontWeight: 800, borderRadius: 10, padding: '6px 16px', fontSize: 13 }}
+      className="disabled:opacity-40 shrink-0"
+    >
+      {saving ? '…' : 'Сохранить'}
+    </button>
+  )
+
   const FormComponent = type === 'expense' ? ExpenseForm : type === 'income' ? IncomeForm : GiftForm
   const typeSuggestions = suggestions?.[type]
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <div className="bg-gradient-to-r from-brand-dark to-brand-light text-white px-4 py-3 shrink-0">
-        <div className="max-w-2xl mx-auto flex items-center gap-3">
-          <button onClick={() => navigate('/')} className="text-xl">←</button>
-          <h2 className="flex-1 text-base font-bold">
-            {isEdit ? 'Редактировать' : 'Новый'} {TITLES[type]}
-          </h2>
-          <button
-            onClick={handleSave}
-            disabled={saving || !data.sum}
-            className="bg-white text-brand rounded-full px-4 py-1.5 text-xs font-bold disabled:opacity-40"
-          >
-            {saving ? '…' : 'Сохранить'}
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white flex flex-col">
+      <Header
+        variant="compact"
+        title={`${isEdit ? 'Редактировать' : 'Новый'} ${TITLES[type]}`}
+        onBack={() => navigate('/')}
+        rightSlot={saveButton}
+      />
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-2xl mx-auto px-4 py-4">
           <FormComponent data={data} onChange={setData} suggestions={typeSuggestions} />
