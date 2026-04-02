@@ -2,9 +2,6 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext.jsx'
 import { TABS } from '../constants.js'
 import Header from '../components/Header.jsx'
-import TabBar from '../components/TabBar.jsx'
-import MonthNav from '../components/MonthNav.jsx'
-import StatCards from '../components/StatCards.jsx'
 import EntryList from '../components/EntryList.jsx'
 import Toast from '../components/Toast.jsx'
 
@@ -16,21 +13,19 @@ export default function ListPage() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header />
-      <TabBar />
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-6xl mx-auto">
-          <MonthNav />
-          <StatCards />
           <EntryList />
         </div>
       </div>
-      <div className="px-4 pb-6 pt-2 bg-gray-50 border-t border-gray-100">
+      <div className="px-4 pb-6 pt-2 bg-white">
         <div className="max-w-6xl mx-auto">
           <button
             onClick={() => navigate(`/add/${ADD_ROUTES[tab]}`)}
-            className="w-full bg-brand text-white rounded-2xl py-3.5 font-bold text-sm active:scale-95 transition-transform shadow-md"
+            style={{ background: 'linear-gradient(135deg, #6d28d9, #a855f7)', borderRadius: 14, boxShadow: '0 6px 20px rgba(109,40,217,0.4)' }}
+            className="w-full text-white py-3.5 font-extrabold text-sm active:scale-95 transition-transform"
           >
             {ADD_LABELS[tab]}
           </button>
