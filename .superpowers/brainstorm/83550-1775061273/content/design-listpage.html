@@ -1,0 +1,142 @@
+<h2>Дизайн: главный экран</h2>
+<p class="subtitle">Полный макет ListPage — нажмите чтобы выбрать, или дайте обратную связь в терминале</p>
+
+<div style="display:flex; gap:24px; flex-wrap:wrap; justify-content:center;">
+
+  <!-- Main phone mockup -->
+  <div style="width:280px; border-radius:28px; overflow:hidden; box-shadow:0 16px 48px rgba(124,58,237,0.25); border:6px solid #1a1a2e; background:#1a1a2e; flex-shrink:0;">
+    <div style="background:#1a1a2e; height:20px; display:flex; justify-content:center; align-items:center;">
+      <div style="width:60px; height:4px; background:#333; border-radius:4px;"></div>
+    </div>
+    <!-- App content -->
+    <div style="background:white; overflow:hidden;">
+
+      <!-- HEADER: gradient with frosted stat card -->
+      <div style="background:linear-gradient(145deg,#3b0764 0%,#6d28d9 50%,#a855f7 100%); padding:14px 14px 20px;">
+        <!-- Top row -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <div style="font-weight:900; font-size:16px; color:white; letter-spacing:2px;">🍒 ВИШНЯ</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="color:rgba(255,255,255,0.65); font-size:18px; line-height:1;">↻</div>
+            <div style="color:rgba(255,255,255,0.65); font-size:18px; line-height:1;">📊</div>
+            <div style="background:rgba(255,255,255,0.18); color:white; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; border:1px solid rgba(255,255,255,0.3); backdrop-filter:blur(8px);">2025 ▾</div>
+          </div>
+        </div>
+
+        <!-- Frosted glass stat card with month nav -->
+        <div style="background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.25); border-radius:16px; padding:14px 16px; backdrop-filter:blur(16px); margin-bottom:14px; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+            <div style="color:rgba(255,255,255,0.55); font-size:18px; font-weight:200; cursor:pointer; padding:0 4px;">‹</div>
+            <div style="text-align:center; flex:1;">
+              <div style="font-size:10px; color:rgba(255,255,255,0.6); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:2px;">АПРЕЛЬ</div>
+              <div style="font-size:26px; font-weight:900; color:white; letter-spacing:-1px; line-height:1;">−12 400 ₽</div>
+              <div style="font-size:10px; color:rgba(255,255,255,0.55); margin-top:3px;">Кэшбэк: 340 ₽</div>
+            </div>
+            <div style="color:rgba(255,255,255,0.55); font-size:18px; font-weight:200; cursor:pointer; padding:0 4px;">›</div>
+          </div>
+        </div>
+
+        <!-- Pill tabs -->
+        <div style="display:flex; gap:6px;">
+          <div style="background:white; color:#6d28d9; border-radius:20px; padding:7px 16px; font-size:11px; font-weight:800; box-shadow:0 2px 10px rgba(0,0,0,0.2); flex:1; text-align:center;">Расходы</div>
+          <div style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:20px; padding:7px 16px; font-size:11px; font-weight:600; flex:1; text-align:center;">Доходы</div>
+          <div style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:20px; padding:7px 16px; font-size:11px; font-weight:600; flex:1; text-align:center;">Подарки</div>
+        </div>
+      </div>
+
+      <!-- LIST CONTENT -->
+      <div style="background:white; padding:12px 12px 6px;">
+
+        <!-- Entry card 1 -->
+        <div style="border-radius:14px; padding:10px 12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; box-shadow:0 2px 12px rgba(0,0,0,0.06); border:1px solid #f3f0ff;">
+          <div style="width:3px; height:40px; background:#ef4444; border-radius:2px; flex-shrink:0;"></div>
+          <div style="flex:1; min-width:0;">
+            <div style="font-size:13px; font-weight:700; color:#1a1a2e; margin-bottom:4px;">Фурнитура</div>
+            <div style="display:flex; gap:4px;">
+              <span style="background:#fef2f2; color:#ef4444; border-radius:6px; padding:2px 7px; font-size:9px; font-weight:700;">Материалы</span>
+              <span style="background:#f3f0ff; color:#7c3aed; border-radius:6px; padding:2px 7px; font-size:9px; font-weight:600;">AliExpress</span>
+            </div>
+          </div>
+          <div style="text-align:right; flex-shrink:0;">
+            <div style="font-size:13px; font-weight:900; color:#ef4444;">−3 200 ₽</div>
+            <div style="font-size:9px; color:#ccc; margin-top:2px;">28.03</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px; flex-shrink:0;">
+            <div style="width:24px; height:24px; background:#f3f0ff; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#7c3aed;">✎</div>
+            <div style="width:24px; height:24px; background:#fff0f0; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#ef4444;">✕</div>
+          </div>
+        </div>
+
+        <!-- Entry card 2 -->
+        <div style="border-radius:14px; padding:10px 12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; box-shadow:0 2px 12px rgba(0,0,0,0.06); border:1px solid #f3f0ff;">
+          <div style="width:3px; height:40px; background:#ef4444; border-radius:2px; flex-shrink:0;"></div>
+          <div style="flex:1; min-width:0;">
+            <div style="font-size:13px; font-weight:700; color:#1a1a2e; margin-bottom:4px;">Упаковка крафт</div>
+            <div style="display:flex; gap:4px;">
+              <span style="background:#fef2f2; color:#ef4444; border-radius:6px; padding:2px 7px; font-size:9px; font-weight:700;">Прочее</span>
+              <span style="background:#f3f0ff; color:#7c3aed; border-radius:6px; padding:2px 7px; font-size:9px; font-weight:600;">WB</span>
+            </div>
+          </div>
+          <div style="text-align:right; flex-shrink:0;">
+            <div style="font-size:13px; font-weight:900; color:#ef4444;">−850 ₽</div>
+            <div style="font-size:9px; color:#ccc; margin-top:2px;">25.03</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px; flex-shrink:0;">
+            <div style="width:24px; height:24px; background:#f3f0ff; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#7c3aed;">✎</div>
+            <div style="width:24px; height:24px; background:#fff0f0; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#ef4444;">✕</div>
+          </div>
+        </div>
+
+        <!-- Entry card 3 -->
+        <div style="border-radius:14px; padding:10px 12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; box-shadow:0 2px 12px rgba(0,0,0,0.06); border:1px solid #f3f0ff;">
+          <div style="width:3px; height:40px; background:#ef4444; border-radius:2px; flex-shrink:0;"></div>
+          <div style="flex:1; min-width:0;">
+            <div style="font-size:13px; font-weight:700; color:#1a1a2e; margin-bottom:4px;">Инструменты</div>
+            <div style="display:flex; gap:4px;">
+              <span style="background:#fef2f2; color:#ef4444; border-radius:6px; padding:2px 7px; font-size:9px; font-weight:700;">Оборудование</span>
+            </div>
+          </div>
+          <div style="text-align:right; flex-shrink:0;">
+            <div style="font-size:13px; font-weight:900; color:#ef4444;">−2 100 ₽</div>
+            <div style="font-size:9px; color:#ccc; margin-top:2px;">20.03</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px; flex-shrink:0;">
+            <div style="width:24px; height:24px; background:#f3f0ff; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#7c3aed;">✎</div>
+            <div style="width:24px; height:24px; background:#fff0f0; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#ef4444;">✕</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ADD BUTTON -->
+      <div style="background:white; padding:8px 12px 16px;">
+        <div style="background:linear-gradient(135deg,#6d28d9,#a855f7); color:white; border-radius:14px; padding:14px; text-align:center; font-size:13px; font-weight:800; box-shadow:0 6px 20px rgba(109,40,217,0.4); letter-spacing:0.3px;">+ Добавить расход</div>
+      </div>
+
+    </div>
+    <div style="background:#1a1a2e; height:20px; display:flex; justify-content:center; align-items:flex-end; padding-bottom:6px;">
+      <div style="width:80px; height:4px; background:#444; border-radius:4px;"></div>
+    </div>
+  </div>
+
+  <!-- Callouts / annotations -->
+  <div style="flex:1; min-width:200px; max-width:280px; display:flex; flex-direction:column; gap:12px; padding-top:8px;">
+    <div style="background:#f3f0ff; border-radius:12px; padding:12px 14px; border-left:3px solid #7c3aed;">
+      <div style="font-size:11px; font-weight:800; color:#6d28d9; margin-bottom:4px;">ШАПКА</div>
+      <div style="font-size:12px; color:#4a4a6a; line-height:1.5;">Градиент + матовое стекло. Навигация по месяцам и сумма — прямо в шапке. Таблетки-вкладки снизу.</div>
+    </div>
+    <div style="background:#fef2f2; border-radius:12px; padding:12px 14px; border-left:3px solid #ef4444;">
+      <div style="font-size:11px; font-weight:800; color:#dc2626; margin-bottom:4px;">КАРТОЧКИ</div>
+      <div style="font-size:12px; color:#4a4a6a; line-height:1.5;">Цветная левая полоска (красная/зелёная/фиолетовая по типу). Название + 2 тега + дата + сумма. Кнопки редактирования и удаления — аккуратные квадратики.</div>
+    </div>
+    <div style="background:#f0fdf4; border-radius:12px; padding:12px 14px; border-left:3px solid #22c55e;">
+      <div style="font-size:11px; font-weight:800; color:#16a34a; margin-bottom:4px;">КНОПКА ДОБАВИТЬ</div>
+      <div style="font-size:12px; color:#4a4a6a; line-height:1.5;">Полная ширина, градиент, скруглённый прямоугольник с тенью. Прилипает к низу экрана.</div>
+    </div>
+    <div style="background:#fffbeb; border-radius:12px; padding:12px 14px; border-left:3px solid #f59e0b;">
+      <div style="font-size:11px; font-weight:800; color:#d97706; margin-bottom:4px;">ДОХОДЫ / ПОДАРКИ</div>
+      <div style="font-size:12px; color:#4a4a6a; line-height:1.5;">Та же структура — полоска зелёная для доходов, фиолетовая для подарков. Тег статуса «В работе» — оранжевый.</div>
+    </div>
+  </div>
+
+</div>

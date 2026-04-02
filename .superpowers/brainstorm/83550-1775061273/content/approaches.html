@@ -1,0 +1,191 @@
+<h2>3 подхода к редизайну</h2>
+<p class="subtitle">Все три используют градиент + плавающие таблетки. Разница — в структуре шапки.</p>
+
+<div class="cards">
+
+  <!-- Approach 1: Frosted Glass Hero -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f3f0ff; padding:12px; border-radius:12px;">
+      <div style="border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(124,58,237,0.2);">
+        <!-- Header with glassmorphism stat -->
+        <div style="background:linear-gradient(135deg,#4c1d95 0%,#7c3aed 60%,#a855f7 100%); padding:16px 14px 20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <div style="font-weight:800; font-size:15px; color:white; letter-spacing:1px;">🍒 ВИШНЯ</div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <div style="color:rgba(255,255,255,0.7); font-size:16px;">📊</div>
+              <div style="background:rgba(255,255,255,0.2); backdrop-filter:blur(8px); color:white; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:600; border:1px solid rgba(255,255,255,0.3);">2025 ▾</div>
+            </div>
+          </div>
+          <!-- Frosted stat card inside header -->
+          <div style="background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); border-radius:14px; padding:12px 14px; border:1px solid rgba(255,255,255,0.25); margin-bottom:14px;">
+            <div style="font-size:11px; color:rgba(255,255,255,0.7); margin-bottom:2px;">◂ Апрель ▸</div>
+            <div style="font-size:24px; font-weight:900; color:white; letter-spacing:-0.5px;">−12 400 ₽</div>
+            <div style="font-size:10px; color:rgba(255,255,255,0.6); margin-top:2px;">Кэшбэк: 340 ₽</div>
+          </div>
+          <!-- Floating pill tabs -->
+          <div style="display:flex; gap:6px;">
+            <div style="background:white; color:#7c3aed; border-radius:20px; padding:6px 14px; font-size:11px; font-weight:700; box-shadow:0 2px 8px rgba(0,0,0,0.15);">Расходы</div>
+            <div style="background:rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); border-radius:20px; padding:6px 14px; font-size:11px; font-weight:600;">Доходы</div>
+            <div style="background:rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); border-radius:20px; padding:6px 14px; font-size:11px; font-weight:600;">Подарки</div>
+          </div>
+        </div>
+        <!-- List area -->
+        <div style="background:white; padding:12px;">
+          <div style="background:#fafafa; border-radius:12px; padding:10px 12px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:12px; font-weight:600; color:#1a1a2e;">Фурнитура</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span style="background:#f0ebff; color:#7c3aed; border-radius:6px; padding:1px 6px; font-size:9px; font-weight:600;">Материалы</span>
+                <span style="background:#f5f5f5; color:#888; border-radius:6px; padding:1px 6px; font-size:9px;">AliExpress</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:#ef4444;">−3 200 ₽</div>
+          </div>
+          <div style="background:#fafafa; border-radius:12px; padding:10px 12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:12px; font-weight:600; color:#1a1a2e;">Упаковка</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span style="background:#f0ebff; color:#7c3aed; border-radius:6px; padding:1px 6px; font-size:9px; font-weight:600;">Прочее</span>
+                <span style="background:#f5f5f5; color:#888; border-radius:6px; padding:1px 6px; font-size:9px;">WB</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:#ef4444;">−850 ₽</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#7c3aed,#a855f7); color:white; border-radius:12px; padding:12px; text-align:center; font-size:13px; font-weight:700; box-shadow:0 4px 14px rgba(124,58,237,0.3);">+ Добавить расход</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Стеклянная шапка</h3>
+      <p>Статистика прямо в градиентной шапке — матовое стекло. Дорого и современно.</p>
+    </div>
+  </div>
+
+  <!-- Approach 2: Hero with month selector inline -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f3f0ff; padding:12px; border-radius:12px;">
+      <div style="border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(124,58,237,0.2);">
+        <!-- Compact header -->
+        <div style="background:linear-gradient(135deg,#4c1d95 0%,#7c3aed 60%,#a855f7 100%); padding:14px 14px 22px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="font-weight:800; font-size:15px; color:white; letter-spacing:1px;">🍒 ВИШНЯ</div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <div style="color:rgba(255,255,255,0.7); font-size:16px;">📊</div>
+              <div style="background:rgba(255,255,255,0.2); color:white; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:600; border:1px solid rgba(255,255,255,0.3);">2025 ▾</div>
+            </div>
+          </div>
+          <!-- Pill tabs right in header -->
+          <div style="display:flex; gap:6px; margin-bottom:14px;">
+            <div style="background:white; color:#7c3aed; border-radius:20px; padding:6px 14px; font-size:11px; font-weight:700; box-shadow:0 2px 8px rgba(0,0,0,0.15);">Расходы</div>
+            <div style="background:rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); border-radius:20px; padding:6px 14px; font-size:11px;">Доходы</div>
+            <div style="background:rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); border-radius:20px; padding:6px 14px; font-size:11px;">Подарки</div>
+          </div>
+        </div>
+        <!-- White card floating over header (negative margin) -->
+        <div style="background:white; padding:10px 12px 12px; margin-top:-14px; border-radius:16px 16px 0 0; position:relative;">
+          <!-- Month nav + stat in one row -->
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; padding:10px 12px; background:#fafafa; border-radius:12px;">
+            <div style="color:#7c3aed; font-size:20px; font-weight:300; line-height:1;">‹</div>
+            <div style="text-align:center;">
+              <div style="font-size:11px; color:#aaa; font-weight:600;">АПРЕЛЬ</div>
+              <div style="font-size:20px; font-weight:900; color:#ef4444; letter-spacing:-0.5px;">−12 400 ₽</div>
+            </div>
+            <div style="color:#7c3aed; font-size:20px; font-weight:300; line-height:1;">›</div>
+          </div>
+          <div style="background:#fafafa; border-radius:12px; padding:10px 12px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:12px; font-weight:600; color:#1a1a2e;">Фурнитура</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span style="background:#f0ebff; color:#7c3aed; border-radius:6px; padding:1px 6px; font-size:9px; font-weight:600;">Материалы</span>
+                <span style="background:#f5f5f5; color:#888; border-radius:6px; padding:1px 6px; font-size:9px;">AliExpress</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:#ef4444;">−3 200 ₽</div>
+          </div>
+          <div style="background:#fafafa; border-radius:12px; padding:10px 12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:12px; font-weight:600; color:#1a1a2e;">Упаковка</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span style="background:#f0ebff; color:#7c3aed; border-radius:6px; padding:1px 6px; font-size:9px; font-weight:600;">Прочее</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:#ef4444;">−850 ₽</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#7c3aed,#a855f7); color:white; border-radius:12px; padding:12px; text-align:center; font-size:13px; font-weight:700; box-shadow:0 4px 14px rgba(124,58,237,0.3);">+ Добавить расход</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Парящая карточка</h3>
+      <p>Таблетки в шапке, белая карточка «выплывает» поверх градиента с месяцем и суммой.</p>
+    </div>
+  </div>
+
+  <!-- Approach 3: Split compact -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f3f0ff; padding:12px; border-radius:12px;">
+      <div style="border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(124,58,237,0.2);">
+        <div style="background:linear-gradient(135deg,#4c1d95 0%,#7c3aed 60%,#a855f7 100%); padding:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="font-weight:800; font-size:15px; color:white; letter-spacing:1px;">🍒 ВИШНЯ</div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <div style="color:rgba(255,255,255,0.7); font-size:16px;">📊</div>
+              <div style="background:rgba(255,255,255,0.2); color:white; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:600; border:1px solid rgba(255,255,255,0.3);">2025 ▾</div>
+            </div>
+          </div>
+          <!-- Pill tabs -->
+          <div style="display:flex; gap:6px;">
+            <div style="background:white; color:#7c3aed; border-radius:20px; padding:6px 14px; font-size:11px; font-weight:700; box-shadow:0 2px 8px rgba(0,0,0,0.15);">Расходы</div>
+            <div style="background:rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); border-radius:20px; padding:6px 14px; font-size:11px;">Доходы</div>
+            <div style="background:rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); border-radius:20px; padding:6px 14px; font-size:11px;">Подарки</div>
+          </div>
+        </div>
+        <div style="background:#f8f5ff; padding:10px 12px 12px;">
+          <!-- Month nav -->
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <div style="color:#7c3aed; font-size:22px; font-weight:300;">‹</div>
+            <div style="font-size:13px; font-weight:700; color:#1a1a2e;">Апрель</div>
+            <div style="color:#7c3aed; font-size:22px; font-weight:300;">›</div>
+          </div>
+          <!-- Two stat pills side by side -->
+          <div style="display:flex; gap:8px; margin-bottom:10px;">
+            <div style="flex:1; background:white; border-radius:12px; padding:10px; text-align:center; box-shadow:0 2px 8px rgba(124,58,237,0.08);">
+              <div style="font-size:15px; font-weight:800; color:#ef4444;">−12 400 ₽</div>
+              <div style="font-size:9px; color:#aaa; margin-top:2px; font-weight:600; text-transform:uppercase;">Расходы</div>
+            </div>
+            <div style="flex:1; background:white; border-radius:12px; padding:10px; text-align:center; box-shadow:0 2px 8px rgba(124,58,237,0.08);">
+              <div style="font-size:15px; font-weight:800; color:#7c3aed;">340 ₽</div>
+              <div style="font-size:9px; color:#aaa; margin-top:2px; font-weight:600; text-transform:uppercase;">Кэшбэк</div>
+            </div>
+          </div>
+          <!-- List -->
+          <div style="background:white; border-radius:12px; padding:10px 12px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+            <div>
+              <div style="font-size:12px; font-weight:600; color:#1a1a2e;">Фурнитура</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span style="background:#f0ebff; color:#7c3aed; border-radius:6px; padding:1px 6px; font-size:9px; font-weight:600;">Материалы</span>
+                <span style="background:#f5f5f5; color:#888; border-radius:6px; padding:1px 6px; font-size:9px;">AliExpress</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:#ef4444;">−3 200 ₽</div>
+          </div>
+          <div style="background:white; border-radius:12px; padding:10px 12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+            <div>
+              <div style="font-size:12px; font-weight:600; color:#1a1a2e;">Упаковка</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span style="background:#f0ebff; color:#7c3aed; border-radius:6px; padding:1px 6px; font-size:9px; font-weight:600;">Прочее</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:#ef4444;">−850 ₽</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#7c3aed,#a855f7); color:white; border-radius:12px; padding:12px; text-align:center; font-size:13px; font-weight:700; box-shadow:0 4px 14px rgba(124,58,237,0.3);">+ Добавить расход</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Светлый контент</h3>
+      <p>Компактная шапка с таблетками, содержимое на нежно-фиолетовом фоне. Больше места для списка.</p>
+    </div>
+  </div>
+
+</div>

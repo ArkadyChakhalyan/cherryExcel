@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 24px; background: #f8f5ff; font-family: sans-serif; }
+  h2 { font-size: 20px; font-weight: 800; color: #1a1a2e; margin: 0 0 6px; }
+  .subtitle { font-size: 13px; color: #888; margin: 0 0 24px; }
+  .grid { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .card-wrap { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+  .label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; font-family: sans-serif; }
+  .phone { width: 210px; border-radius: 22px; overflow: hidden; box-shadow: 0 12px 40px rgba(124,58,237,0.2); border: 5px solid #1a1a2e; background: #1a1a2e; transition: transform 0.2s, box-shadow 0.2s; }
+  .phone:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(124,58,237,0.35); }
+  .phone.selected { outline: 3px solid #7c3aed; outline-offset: 4px; }
+  .notch { background: #1a1a2e; height: 14px; display: flex; justify-content: center; align-items: center; }
+  .notch-bar { width: 50px; height: 3px; background: #333; border-radius: 4px; }
+  .home { background: #1a1a2e; height: 14px; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 4px; }
+  .home-bar { width: 60px; height: 3px; background: #444; border-radius: 4px; }
+  .header { background: linear-gradient(135deg,#3b0764 0%,#6d28d9 55%,#a855f7 100%); padding: 14px 14px 18px; }
+  .entry { border-radius: 12px; padding: 9px 11px; margin-bottom: 7px; display: flex; align-items: center; gap: 9px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border: 1px solid #f3f0ff; }
+  .stripe { width: 3px; height: 36px; border-radius: 2px; flex-shrink: 0; }
+  .chip { border-radius: 6px; padding: 2px 7px; font-size: 9px; font-weight: 700; }
+  .btn { border-radius: 13px; padding: 12px; text-align: center; font-size: 12px; font-weight: 800; box-shadow: 0 5px 18px rgba(109,40,217,0.35); background: linear-gradient(135deg,#6d28d9,#a855f7); color: white; }
+  .selected-badge { margin-top: 10px; background: #7c3aed; color: white; border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 700; font-family: sans-serif; display: none; }
+  .card-wrap.selected .selected-badge { display: block; }
+</style>
+<script>
+  function pick(el) {
+    document.querySelectorAll('.card-wrap').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.phone').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    el.querySelector('.phone').classList.add('selected');
+    // fire event for companion
+    if (window.__companion) window.__companion.select(el.dataset.choice, el.querySelector('.label-text').textContent);
+  }
+</script>
+</head>
+<body>
+
+<h2>Какой шрифт нравится?</h2>
+<p class="subtitle">Все три — Google Fonts, бесплатные, хорошо читаются на телефоне</p>
+
+<div class="grid">
+
+  <!-- A: Nunito - rounded, friendly -->
+  <div class="card-wrap" data-choice="a" onclick="pick(this)">
+    <div class="label"><span class="label-text">A — Nunito</span> · мягкий, дружелюбный</div>
+    <div class="phone">
+      <div class="notch"><div class="notch-bar"></div></div>
+      <div style="background:white; overflow:hidden;">
+        <div class="header" style="font-family:'Nunito',sans-serif;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="font-weight:900; font-size:15px; color:white; letter-spacing:1px;">🍒 ВИШНЯ</div>
+            <div style="background:rgba(255,255,255,0.2); color:white; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; border:1px solid rgba(255,255,255,0.3);">2025 ▾</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.25); border-radius:14px; padding:12px 14px; margin-bottom:12px;">
+            <div style="font-size:10px; color:rgba(255,255,255,0.6); font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:2px;">АПРЕЛЬ</div>
+            <div style="font-size:24px; font-weight:900; color:white; line-height:1;">−12 400 ₽</div>
+            <div style="font-size:10px; color:rgba(255,255,255,0.55); margin-top:3px;">Кэшбэк: 340 ₽</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <div style="background:white; color:#6d28d9; border-radius:20px; padding:6px 12px; font-size:11px; font-weight:800; flex:1; text-align:center;">Расходы</div>
+            <div style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:20px; padding:6px 12px; font-size:11px; flex:1; text-align:center;">Доходы</div>
+            <div style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:20px; padding:6px 12px; font-size:11px; flex:1; text-align:center;">Подарки</div>
+          </div>
+        </div>
+        <div style="background:white; padding:10px;" style="font-family:'Nunito',sans-serif;">
+          <div class="entry" style="font-family:'Nunito',sans-serif;">
+            <div class="stripe" style="background:#ef4444;"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:700; color:#1a1a2e; font-family:'Nunito',sans-serif;">Фурнитура</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span class="chip" style="background:#fef2f2; color:#ef4444; font-family:'Nunito',sans-serif;">Материалы</span>
+                <span class="chip" style="background:#f3f0ff; color:#7c3aed; font-family:'Nunito',sans-serif;">AliExpress</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:#ef4444; font-family:'Nunito',sans-serif;">−3 200 ₽</div>
+          </div>
+          <div class="entry" style="font-family:'Nunito',sans-serif;">
+            <div class="stripe" style="background:#ef4444;"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:700; color:#1a1a2e; font-family:'Nunito',sans-serif;">Упаковка крафт</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span class="chip" style="background:#fef2f2; color:#ef4444; font-family:'Nunito',sans-serif;">Прочее</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:#ef4444; font-family:'Nunito',sans-serif;">−850 ₽</div>
+          </div>
+          <div class="btn" style="font-family:'Nunito',sans-serif;">+ Добавить расход</div>
+        </div>
+      </div>
+      <div class="home"><div class="home-bar"></div></div>
+    </div>
+    <div class="selected-badge">✓ Выбрано</div>
+  </div>
+
+  <!-- B: Inter - clean, system-like -->
+  <div class="card-wrap" data-choice="b" onclick="pick(this)">
+    <div class="label"><span class="label-text">B — Inter</span> · чистый, системный</div>
+    <div class="phone">
+      <div class="notch"><div class="notch-bar"></div></div>
+      <div style="background:white; overflow:hidden;">
+        <div class="header" style="font-family:'Inter',sans-serif;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="font-weight:900; font-size:15px; color:white; letter-spacing:1px;">🍒 ВИШНЯ</div>
+            <div style="background:rgba(255,255,255,0.2); color:white; border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; border:1px solid rgba(255,255,255,0.3);">2025 ▾</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.25); border-radius:14px; padding:12px 14px; margin-bottom:12px;">
+            <div style="font-size:10px; color:rgba(255,255,255,0.6); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:2px;">АПРЕЛЬ</div>
+            <div style="font-size:24px; font-weight:800; color:white; line-height:1; letter-spacing:-0.5px;">−12 400 ₽</div>
+            <div style="font-size:10px; color:rgba(255,255,255,0.55); margin-top:3px;">Кэшбэк: 340 ₽</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <div style="background:white; color:#6d28d9; border-radius:20px; padding:6px 12px; font-size:11px; font-weight:700; flex:1; text-align:center;">Расходы</div>
+            <div style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:20px; padding:6px 12px; font-size:11px; flex:1; text-align:center;">Доходы</div>
+            <div style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:20px; padding:6px 12px; font-size:11px; flex:1; text-align:center;">Подарки</div>
+          </div>
+        </div>
+        <div style="background:white; padding:10px;">
+          <div class="entry" style="font-family:'Inter',sans-serif;">
+            <div class="stripe" style="background:#ef4444;"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600; color:#1a1a2e; font-family:'Inter',sans-serif;">Фурнитура</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span class="chip" style="background:#fef2f2; color:#ef4444; font-family:'Inter',sans-serif;">Материалы</span>
+                <span class="chip" style="background:#f3f0ff; color:#7c3aed; font-family:'Inter',sans-serif;">AliExpress</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:700; color:#ef4444; font-family:'Inter',sans-serif;">−3 200 ₽</div>
+          </div>
+          <div class="entry" style="font-family:'Inter',sans-serif;">
+            <div class="stripe" style="background:#ef4444;"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px; font-weight:600; color:#1a1a2e; font-family:'Inter',sans-serif;">Упаковка крафт</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span class="chip" style="background:#fef2f2; color:#ef4444; font-family:'Inter',sans-serif;">Прочее</span>
+              </div>
+            </div>
+            <div style="font-size:13px; font-weight:700; color:#ef4444; font-family:'Inter',sans-serif;">−850 ₽</div>
+          </div>
+          <div class="btn" style="font-family:'Inter',sans-serif;">+ Добавить расход</div>
+        </div>
+      </div>
+      <div class="home"><div class="home-bar"></div></div>
+    </div>
+    <div class="selected-badge">✓ Выбрано</div>
+  </div>
+
+  <!-- C: Montserrat - bold, premium -->
+  <div class="card-wrap" data-choice="c" onclick="pick(this)">
+    <div class="label"><span class="label-text">C — Montserrat</span> · жирный, премиум</div>
+    <div class="phone">
+      <div class="notch"><div class="notch-bar"></div></div>
+      <div style="background:white; overflow:hidden;">
+        <div class="header" style="font-family:'Montserrat',sans-serif;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="font-weight:900; font-size:14px; color:white; letter-spacing:2px;">🍒 ВИШНЯ</div>
+            <div style="background:rgba(255,255,255,0.2); color:white; border-radius:20px; padding:4px 12px; font-size:10px; font-weight:700; border:1px solid rgba(255,255,255,0.3);">2025 ▾</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.25); border-radius:14px; padding:12px 14px; margin-bottom:12px;">
+            <div style="font-size:9px; color:rgba(255,255,255,0.6); font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:2px;">АПРЕЛЬ</div>
+            <div style="font-size:22px; font-weight:900; color:white; line-height:1; letter-spacing:-0.5px;">−12 400 ₽</div>
+            <div style="font-size:9px; color:rgba(255,255,255,0.55); margin-top:3px;">Кэшбэк: 340 ₽</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <div style="background:white; color:#6d28d9; border-radius:20px; padding:6px 12px; font-size:10px; font-weight:800; flex:1; text-align:center; letter-spacing:0.3px;">Расходы</div>
+            <div style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:20px; padding:6px 12px; font-size:10px; flex:1; text-align:center;">Доходы</div>
+            <div style="background:rgba(255,255,255,0.15); color:rgba(255,255,255,0.75); border-radius:20px; padding:6px 12px; font-size:10px; flex:1; text-align:center;">Подарки</div>
+          </div>
+        </div>
+        <div style="background:white; padding:10px;">
+          <div class="entry" style="font-family:'Montserrat',sans-serif;">
+            <div class="stripe" style="background:#ef4444;"></div>
+            <div style="flex:1;">
+              <div style="font-size:12px; font-weight:700; color:#1a1a2e; font-family:'Montserrat',sans-serif;">Фурнитура</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span class="chip" style="background:#fef2f2; color:#ef4444; font-family:'Montserrat',sans-serif;">Материалы</span>
+                <span class="chip" style="background:#f3f0ff; color:#7c3aed; font-family:'Montserrat',sans-serif;">AliExpress</span>
+              </div>
+            </div>
+            <div style="font-size:12px; font-weight:800; color:#ef4444; font-family:'Montserrat',sans-serif;">−3 200 ₽</div>
+          </div>
+          <div class="entry" style="font-family:'Montserrat',sans-serif;">
+            <div class="stripe" style="background:#ef4444;"></div>
+            <div style="flex:1;">
+              <div style="font-size:12px; font-weight:700; color:#1a1a2e; font-family:'Montserrat',sans-serif;">Упаковка крафт</div>
+              <div style="display:flex; gap:4px; margin-top:3px;">
+                <span class="chip" style="background:#fef2f2; color:#ef4444; font-family:'Montserrat',sans-serif;">Прочее</span>
+              </div>
+            </div>
+            <div style="font-size:12px; font-weight:800; color:#ef4444; font-family:'Montserrat',sans-serif;">−850 ₽</div>
+          </div>
+          <div class="btn" style="font-family:'Montserrat',sans-serif; font-size:11px;">+ Добавить расход</div>
+        </div>
+      </div>
+      <div class="home"><div class="home-bar"></div></div>
+    </div>
+    <div class="selected-badge">✓ Выбрано</div>
+  </div>
+
+</div>
+
+<script>
+  // hook into companion infrastructure if available
+  document.querySelectorAll('.card-wrap').forEach(el => {
+    el.addEventListener('click', () => {
+      const choice = el.dataset.choice;
+      const text = el.querySelector('.label-text').textContent;
+      if (typeof recordChoice === 'function') recordChoice(choice, text);
+      if (typeof toggleSelect === 'function') {
+        // mark as selected visually via companion
+      }
+    });
+  });
+</script>
+</body>
+</html>

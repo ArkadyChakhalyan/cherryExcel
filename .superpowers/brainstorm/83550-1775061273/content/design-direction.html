@@ -1,0 +1,115 @@
+<h2>Which design direction feels right?</h2>
+<p class="subtitle">Pick the overall aesthetic for ВИШНЯ</p>
+
+<div class="cards">
+
+  <!-- Option A: Clean & Airy -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f8f9ff; padding: 16px; border-radius: 12px;">
+      <div style="background: white; border-radius: 12px; padding: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+          <div style="font-weight:800; font-size:14px; color:#1a1a2e;">🍒 ВИШНЯ</div>
+          <div style="background:#f0ebff; color:#7c3aed; border-radius:20px; padding:3px 10px; font-size:11px; font-weight:600;">2025 ▾</div>
+        </div>
+        <div style="display:flex; gap:6px; margin-bottom:10px;">
+          <div style="flex:1; text-align:center; padding:4px; border-bottom: 2px solid #7c3aed; color:#7c3aed; font-size:11px; font-weight:700;">Расходы</div>
+          <div style="flex:1; text-align:center; padding:4px; color:#aaa; font-size:11px;">Доходы</div>
+          <div style="flex:1; text-align:center; padding:4px; color:#aaa; font-size:11px;">Подарки</div>
+        </div>
+        <div style="background:#faf8ff; border-radius:10px; padding:10px; margin-bottom:8px;">
+          <div style="font-size:11px; color:#888; margin-bottom:4px;">Апрель</div>
+          <div style="font-size:20px; font-weight:800; color:#1a1a2e;">−12 400 ₽</div>
+        </div>
+        <div style="background:white; border:1px solid #f0ebff; border-radius:10px; padding:10px; margin-bottom:6px;">
+          <div style="display:flex; justify-content:space-between;">
+            <div>
+              <div style="font-size:12px; font-weight:600; color:#1a1a2e;">Фурнитура</div>
+              <div style="font-size:10px; color:#aaa;">AliExpress · Материалы</div>
+            </div>
+            <div style="font-size:12px; font-weight:700; color:#ef4444;">−3 200 ₽</div>
+          </div>
+        </div>
+        <div style="background:#7c3aed; color:white; border-radius:10px; padding:8px; text-align:center; font-size:12px; font-weight:700;">+ Добавить расход</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Чистый и воздушный</h3>
+      <p>Белый фон, мягкие тени, много пространства. Акцент на данных, ничего лишнего.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Bold Dark -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f0f1a; padding: 16px; border-radius: 12px;">
+      <div style="background:#1a1a2e; border-radius:12px; padding:12px; box-shadow:0 4px 20px rgba(124,58,237,0.3); margin-bottom:8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <div style="font-weight:800; font-size:14px; color:white;">🍒 ВИШНЯ</div>
+          <div style="background:rgba(124,58,237,0.3); color:#c084fc; border-radius:20px; padding:3px 10px; font-size:11px; font-weight:600;">2025 ▾</div>
+        </div>
+        <div style="display:flex; gap:6px; margin-bottom:10px;">
+          <div style="flex:1; text-align:center; padding:4px; border-bottom:2px solid #a855f7; color:#a855f7; font-size:11px; font-weight:700;">Расходы</div>
+          <div style="flex:1; text-align:center; padding:4px; color:#555; font-size:11px;">Доходы</div>
+          <div style="flex:1; text-align:center; padding:4px; color:#555; font-size:11px;">Подарки</div>
+        </div>
+        <div style="background:#16213e; border-radius:10px; padding:10px; margin-bottom:8px;">
+          <div style="font-size:11px; color:#666; margin-bottom:4px;">Апрель</div>
+          <div style="font-size:20px; font-weight:800; color:white;">−12 400 ₽</div>
+        </div>
+        <div style="background:#16213e; border:1px solid rgba(124,58,237,0.2); border-radius:10px; padding:10px; margin-bottom:6px;">
+          <div style="display:flex; justify-content:space-between;">
+            <div>
+              <div style="font-size:12px; font-weight:600; color:white;">Фурнитура</div>
+              <div style="font-size:10px; color:#555;">AliExpress · Материалы</div>
+            </div>
+            <div style="font-size:12px; font-weight:700; color:#f87171;">−3 200 ₽</div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#7c3aed,#a855f7); color:white; border-radius:10px; padding:8px; text-align:center; font-size:12px; font-weight:700; box-shadow:0 4px 12px rgba(124,58,237,0.4);">+ Добавить расход</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Тёмная тема</h3>
+      <p>Тёмный фон, фиолетовые акценты, неоновые детали. Стильно и современно.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Vibrant Gradient -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f3f0ff; padding: 16px; border-radius: 12px;">
+      <div style="border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(124,58,237,0.15); margin-bottom:8px;">
+        <div style="background:linear-gradient(135deg,#5b21b6 0%,#7c3aed 50%,#a855f7 100%); padding:14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="font-weight:800; font-size:14px; color:white;">🍒 ВИШНЯ</div>
+            <div style="background:rgba(255,255,255,0.2); color:white; border-radius:20px; padding:3px 10px; font-size:11px; font-weight:600;">2025 ▾</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.15); border-radius:10px; padding:10px; margin-bottom:10px;">
+            <div style="font-size:11px; color:rgba(255,255,255,0.7); margin-bottom:4px;">Апрель · Расходы</div>
+            <div style="font-size:22px; font-weight:800; color:white;">−12 400 ₽</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <div style="flex:1; background:rgba(255,255,255,0.25); border-radius:20px; padding:5px 8px; color:white; font-size:11px; font-weight:700; text-align:center;">Расходы</div>
+            <div style="flex:1; background:rgba(255,255,255,0.1); border-radius:20px; padding:5px 8px; color:rgba(255,255,255,0.6); font-size:11px; text-align:center;">Доходы</div>
+            <div style="flex:1; background:rgba(255,255,255,0.1); border-radius:20px; padding:5px 8px; color:rgba(255,255,255,0.6); font-size:11px; text-align:center;">Подарки</div>
+          </div>
+        </div>
+        <div style="background:white; padding:10px;">
+          <div style="background:#fafafa; border-radius:10px; padding:10px; margin-bottom:6px;">
+            <div style="display:flex; justify-content:space-between;">
+              <div>
+                <div style="font-size:12px; font-weight:600; color:#1a1a2e;">Фурнитура</div>
+                <div style="font-size:10px; color:#aaa;">AliExpress · Материалы</div>
+              </div>
+              <div style="font-size:12px; font-weight:700; color:#ef4444;">−3 200 ₽</div>
+            </div>
+          </div>
+          <div style="background:linear-gradient(135deg,#7c3aed,#a855f7); color:white; border-radius:10px; padding:8px; text-align:center; font-size:12px; font-weight:700;">+ Добавить расход</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Яркий градиент</h3>
+      <p>Насыщенный градиентный заголовок, белое тело. Живой и энергичный.</p>
+    </div>
+  </div>
+
+</div>
