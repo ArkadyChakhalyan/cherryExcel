@@ -5,7 +5,7 @@ import { CHIP_OTZIV } from '../constants.js'
 function Field({ label, children }) {
   return (
     <div>
-      <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">{label}</label>
+      <label style={{ fontSize: 9, fontWeight: 800, color: '#888', letterSpacing: '1.5px' }} className="block uppercase mb-1.5">{label}</label>
       {children}
     </div>
   )
@@ -19,10 +19,12 @@ export default function GiftForm({ data, onChange, suggestions }) {
 
   return (
     <div className="space-y-4">
-      <Field label="Сумма (₽)">
-        <input type="number" inputMode="decimal" value={f('sum')} onChange={e => set('sum')(e.target.value)}
-          placeholder="0" className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand" />
-      </Field>
+      <div style={{ background: 'linear-gradient(135deg, #f3f0ff, #ede9fe)', border: '1.5px solid #ddd6fe', borderRadius: 14 }} className="p-3">
+        <Field label="Сумма (₽)">
+          <input type="number" inputMode="decimal" value={f('sum')} onChange={e => set('sum')(e.target.value)}
+            placeholder="0" className="w-full bg-transparent focus:outline-none text-xl font-extrabold text-brand placeholder-brand/40" />
+        </Field>
+      </div>
       <Field label="ЧТО">
         <AutocompleteInput value={f('chto')} onChange={set('chto')} suggestions={suggestions?.chto} placeholder="Серьги, колье…" />
       </Field>
@@ -40,7 +42,7 @@ export default function GiftForm({ data, onChange, suggestions }) {
       </Field>
       <Field label="Дата">
         <input type="date" value={dateToDMY(f('date'))} onChange={e => set('date')(dmyFromDate(e.target.value))}
-          className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand" />
+          style={{ border: '1.5px solid #ede9fe', borderRadius: 10 }} className="w-full px-3 py-2.5 text-sm focus:outline-none focus:border-brand" />
       </Field>
     </div>
   )
