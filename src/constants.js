@@ -54,4 +54,4 @@ export const CHIP_GDE_ZAKAZALI = ['ТГ', 'WA', 'Inst', 'Лично']
 export const CHIP_OTZIV = ['Да', 'Нет', '—']
 export const CHIP_STATUS = ['В работе', 'Завершён', 'Отменён']
 
-export const SPREADSHEET_ID = import.meta.env.VITE_SPREADSHEET_ID
+export const SPREADSHEET_ID = '1-71UF4l4V7kR2ibxU08wk3uLo8V3BvYTBgtbykxiObk'
